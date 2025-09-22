@@ -1,6 +1,7 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
+const wall = 40; // Wall thickness
 const box = 20; // Snake and food size
 let snake = [{ x: 200, y: 200 }];
 let food = { x: getRandomPosition(), y: getRandomPosition() };
@@ -11,6 +12,10 @@ let gameRunning = true; // Track if the game is running
 // Generate random position for food
 function getRandomPosition() {
     return Math.floor(Math.random() * (canvas.width / box)) * box;
+}
+//Generate random position for walls
+function getRandomWallPosition() {
+    return Math.floor(Math.random() * ((canvas.width - wall) / box)) * box;
 }
 
 // Listen for arrow key input
@@ -95,6 +100,12 @@ function drawGame() {
     snake.forEach(segment => ctx.fillRect(segment.x, segment.y, box, box));
 
     }
+
+    // Draw walls
+    if (score >= 20) {  // Add walls if score >= 20
+        ctx.fillStyle = "brown";
+        ctx.fillRect(getRandomWallPosition(), getRandomWallPosition(), wall, wall);
+
 }
 
 // Dynamic game speed
@@ -112,4 +123,5 @@ function increaseSpeedIfNeeded() {
         speed = Math.max(30, speed - 10);
         updateSpeed();
     }
+}
 }
