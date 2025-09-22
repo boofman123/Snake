@@ -1,10 +1,10 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-const wall = 40; // Wall thickness
 const box = 20; // Snake and food size
 let snake = [{ x: 200, y: 200 }];
 let food = { x: getRandomPosition(), y: getRandomPosition() };
+let barriers = []; // Array to hold barrier positions
 let dx = box, dy = 0;
 let score = 0;
 let gameRunning = true; // Track if the game is running
@@ -13,11 +13,20 @@ let gameRunning = true; // Track if the game is running
 function getRandomPosition() {
     return Math.floor(Math.random() * (canvas.width / box)) * box;
 }
-//Generate random position for walls
-function getRandomWallPosition() {
-    return Math.floor(Math.random() * ((canvas.width - wall) / box)) * box;
-}
-
+//add barriers
+setInterval(() => {
+    if (!gameRunning) return;
+    else if (score >= 20)
+    let barrier;
+    do {
+        barrier = { x: getRandomPosition(), y: getRandomPosition() };
+        // Avoid placing wall on snake or food
+    } while (
+        snake.some(segment => segment.x === barrier.x && segment.y === barrier.y) ||
+        (food.x === barriers.x && food.y === barrier.y)
+    );
+    barriers.push(barrier);
+}, 5000);
 // Listen for arrow key input
 document.addEventListener("keydown", changeDirection);
 
@@ -59,6 +68,13 @@ function updateGame() {
         }
     }
 
+    // Check for barrier collision
+    for (let barrier of barriers) {
+        if (newHead.x === barrier.x && newHead.y === barrier.y) {
+            gameOver();
+            return;
+        }
+    }
     // Check if food is eaten
     if (newHead.x === food.x && newHead.y === food.y) {
         score++;
@@ -100,28 +116,10 @@ function drawGame() {
     snake.forEach(segment => ctx.fillRect(segment.x, segment.y, box, box));
 
     }
-
-    // Draw walls
-    if (score >= 20) {  // Add walls if score >= 20
-        ctx.fillStyle = "brown";
-        ctx.fillRect(getRandomWallPosition(), getRandomWallPosition(), wall, wall);
-
+    // Draw barriers
+    ctx.fillStyle = "brown";
+    barriers.forEach(barrier => ctx.fillRect(barrier.x, barrier.y, box, box));
 }
 
-// Dynamic game speed
-let speed = 100;
-let gameInterval = setInterval(updateGame, speed);
-
-function updateSpeed() {
-    clearInterval(gameInterval);
-    gameInterval = setInterval(updateGame, speed);
-}
-
-function increaseSpeedIfNeeded() {
-    if (score > 0 && score % 5 === 0) {
-        // Decrease interval (increase speed), but don't go below a minimum
-        speed = Math.max(30, speed - 10);
-        updateSpeed();
-    }
-}
-}
+// Run game loop every 100ms
+setInterval(updateGame, 100);
