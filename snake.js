@@ -16,16 +16,19 @@ function getRandomPosition() {
 //add barriers
 setInterval(() => {
     if (!gameRunning) return;
-    else if (score >= 20)
-    let barrier;
-    do {
+    else if (score >= 20) {
+        let barrier;
+        do {
         barrier = { x: getRandomPosition(), y: getRandomPosition() };
         // Avoid placing wall on snake or food
     } while (
         snake.some(segment => segment.x === barrier.x && segment.y === barrier.y) ||
-        (food.x === barriers.x && food.y === barrier.y)
+        (food.x === barrier.x && food.y === barrier.y)
     );
-    barriers.push(barrier);
+    barriers = [barrier]; // Only one barrier at a time
+}
+else {
+    barriers = []; // no barriers if score < 20
 }, 5000);
 // Listen for arrow key input
 document.addEventListener("keydown", changeDirection);
@@ -44,7 +47,9 @@ function resetGame() {
     dx = box;
     dy = 0;
     score = 0;
+    barriers = []; // Clear barriers
     gameRunning = true;
+  
 }
 
 // Game loop
