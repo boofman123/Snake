@@ -59,6 +59,7 @@ function updateGame() {
         score++;
         document.getElementById("scorebox").textContent = `Score: ${score}`;
         food = { x: getRandomPosition(), y: getRandomPosition() };
+        increaseSpeedIfNeeded && increaseSpeedIfNeeded();
     } else {
         snake.pop(); // Remove tail if no food is eaten
     }
@@ -96,5 +97,19 @@ function drawGame() {
     }
 }
 
-// Run game loop every 100ms
-setInterval(updateGame, 100);
+// Dynamic game speed
+let speed = 100;
+let gameInterval = setInterval(updateGame, speed);
+
+function updateSpeed() {
+    clearInterval(gameInterval);
+    gameInterval = setInterval(updateGame, speed);
+}
+
+function increaseSpeedIfNeeded() {
+    if (score > 0 && score % 5 === 0) {
+        // Decrease interval (increase speed), but don't go below a minimum
+        speed = Math.max(30, speed - 10);
+        updateSpeed();
+    }
+}
