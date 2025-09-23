@@ -12,13 +12,13 @@ const ctx = canvas.getContext("2d");
 const snakeHeadImg = new Image();
 
 
-snakeHeadImg.src = "/home/lee-mcveagh/Desktop/Repos/Snake/images/snakehead.png";
+snakeHeadImg.src = "images/snakehead.png";
 
 
 const snakeBodyImg = new Image();
 
 
-snakeBodyImg.src = "/home/lee-mcveagh/Desktop/Repos/Snake/images/snakebody.png";
+snakeBodyImg.src = "images/snakebody.png";
 
 
 
