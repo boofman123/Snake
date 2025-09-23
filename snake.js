@@ -10,7 +10,7 @@ const bigbox = 40; // Wall size
 
 let snake = [{ x: 200, y: 200 }];
 
-let wall = { x: getWallposition(), y: getWallposition()};
+let wall = []; // Array to hold parts of the wall
 
 let food = { x: getRandomPosition(), y: getRandomPosition() };
 
@@ -21,7 +21,33 @@ let score = 0;
 let gameRunning = true; // Track if the game is running
 
 
+// Make longer walls
 
+function generateLongWall(length = 4) {
+    let wallSegments;
+    let tries = 0;
+    do {
+        const direction = Math.random() < 0.5;
+        let startX = getWallposition();
+        let startY = getWallposition();
+        wallSegments = [];
+        for (let i = 0; i < length; i++) {
+            wallSegments.push({
+                x: direction ? startX + i * bigbox : startX,
+                y: direction ? startY : startY + i * bigbox
+            });
+        }
+        tries++;
+        // Limit attempts to avoid infinite loops
+        if (tries > 100) break;
+    } while (
+        // Check overlap with snake
+        wallSegments.some(seg => snake.some(s => s.x === seg.x && s.y === seg.y)) ||
+        // Check overlap with food
+        wallSegments.some(seg => food.x === seg.x && food.y === seg.y)
+    );
+    return wallSegments;
+}
 // Generate random position for food
 
 function getRandomPosition() {
@@ -90,6 +116,18 @@ function updateGame() {
 
     let newHead = { x: snake[0].x + dx, y: snake[0].y + dy };
 
+    //Delete and add walls
+
+    if (score >= 10 && score % 5 === 0 && score !== lastWallScore) {
+        wall = generateLongWall(4);
+        lastWallScore = score; // Update the last wall score
+    }
+    else if (score >= 30 && score % 5 === 0 && score !== lastWallScore) {
+        wall = generateLongWall(6); // Longer walls at higher scores
+        lastWallScore = score;
+    }
+
+
 
 
     // Check for wall collision
@@ -102,7 +140,17 @@ function updateGame() {
 
     }
 
-
+    // Check for collision with walls
+    if (score >= 10) {
+    
+        for (let segment of wall) {
+        
+            if (newHead.x === segment.x && newHead.y === segment.y) {
+            gameOver();
+            return;
+        }
+    }
+    }
 
     // Check for self-collision
 
@@ -116,13 +164,6 @@ function updateGame() {
 
         }
 
-    }
-
-    //Delete and add walls
-
-    if (score >= 10 && score % 5 === 0 && score !== lastWallScore) {
-        wall = { x: getWallposition(), y: getWallposition()};
-        lastWallScore = score; // Update the last wall score
     }
 
     // Check if food is eaten
@@ -184,8 +225,8 @@ function drawGame() {
 
     if (score >= 10) {
 
-        ctx.fillstyle = "orange" 
-        ctx.fillRect(wall.x, food.y, bigbox, bigbox);
+        ctx.fillStyle = "orange" 
+        wall.forEach(segment => ctx.fillRect(segment.x, segment.y, bigbox, bigbox));
     }
 
 
