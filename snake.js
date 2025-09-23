@@ -76,7 +76,7 @@ function resetGame() {
 
 }
 
-
+let lastWallScore = 0; // Track the score when the last wall was added
 
 // Game loop
 
@@ -120,9 +120,9 @@ function updateGame() {
 
     //Delete and add walls
 
-    if (score >= 10) {
-
+    if (score >= 10 && score % 5 === 0 && score !== lastWallScore) {
         wall = { x: getWallposition(), y: getWallposition()};
+        lastWallScore = score; // Update the last wall score
     }
 
     // Check if food is eaten
@@ -182,7 +182,7 @@ function drawGame() {
 
     //Draw walls
 
-    if (score >= 10 && score %5 === 0) {
+    if (score >= 10) {
 
         ctx.fillstyle = "orange" 
         ctx.fillRect(wall.x, food.y, bigbox, bigbox);
@@ -224,7 +224,6 @@ function drawGame() {
 // Run game loop every 100ms
 
 
-setInterval(updateGame, 100);
 
 
 // Dynamic game speed
