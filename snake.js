@@ -59,14 +59,17 @@ let score = 0;
 
 
 
-let gameRunning = true; // Track if the game is running
+let gameRunning = false; // Track if the game is running
 
 
 
+function startGame() {
+    alert("Press OK to start the game!");
+    resetGame();
+    gameRunning = true;
+}
 
-
-// Make longer walls
-
+startGame();    
 
 
 
@@ -521,7 +524,6 @@ function gameOver() {
 
 
 }
-
 
 
 
