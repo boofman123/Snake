@@ -3,6 +3,13 @@ const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
 
+const snakeHeadImg = new Image();
+snakeHeadImg.src = "/home/lee-mcveagh/Desktop/Repos/Snake/images/snakehead.png";
+const snakeBodyImg = new Image();
+snakeBodyImg.src = "/home/lee-mcveagh/Desktop/Repos/Snake/images/snakebody.png";
+
+
+
 
 const box = 20; // Snake and food size
 
@@ -23,6 +30,31 @@ let gameRunning = true; // Track if the game is running
 
 // Make longer walls
 
+function drawSnake() {
+    snake.forEach((segment, idx) => {
+        if (idx === 0) {
+            // Draw head with rotation
+            ctx.save();
+            // Move origin to center of head
+            ctx.translate(segment.x + box / 2, segment.y + box / 2);
+
+            // Determine rotation angle based on direction
+            let angle = 0;
+            if (dx === box && dy === 0) angle = 0; // Right
+            else if (dx === -box && dy === 0) angle = Math.PI; // Left
+            else if (dx === 0 && dy === -box) angle = -Math.PI / 2; // Up
+            else if (dx === 0 && dy === box) angle = Math.PI / 2; // Down
+
+            ctx.rotate(angle);
+            // Draw image centered
+            ctx.drawImage(snakeHeadImg, -box / 2, -box / 2, box, box);
+            ctx.restore();
+        } else {
+            // Draw body (no rotation, or add logic for curved body if you have images)
+            ctx.drawImage(snakeBodyImg, segment.x, segment.y, box, box);
+        }
+    });
+}
 function generateLongWall(length = 4) {
     let wallSegments;
     let tries = 0;
@@ -241,21 +273,9 @@ function drawGame() {
 
     // Draw snake
 
-    if (score >= 5) {
+    drawSnake();
 
-        ctx.fillStyle = "purple"; // Change color if score >= 10
-
-        snake.forEach(segment => ctx.fillRect(segment.x, segment.y, box, box));
-
-    } else {
-
-    ctx.fillStyle = "green";
-
-    snake.forEach(segment => ctx.fillRect(segment.x, segment.y, box, box));
-
-
-
-    }
+    
 
 }
 

@@ -5,6 +5,7 @@ body {
 
 canvas {
     border: 15px solid black;
+    background-color: #89CFF0
 }
 
 #scorebox {
