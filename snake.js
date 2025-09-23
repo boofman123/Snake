@@ -297,7 +297,10 @@ function resetGame() {
 
 
 
+
     gameRunning = true;
+
+    
 
 
 
@@ -469,10 +472,27 @@ function updateGame() {
 
     }
 
+// Display messages at certain scores
 
+    if (score === 5){
 
+        document.getElementById("bullshit").textContent = "Getting faster!";
+    }
 
+        else if (score === 10){
 
+            document.getElementById("bullshit").textContent = "Incoming walls!";
+    }
+
+        else if (score === 20){
+
+            document.getElementById("bullshit").textContent = "Hold on to your dicks!";
+    }
+
+    else if (score === 30){
+
+            document.getElementById("bullshit").textContent = "Harry you cunt!";
+    }
 
 
     snake.unshift(newHead); // Add new head
