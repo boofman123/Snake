@@ -10,7 +10,7 @@ const bigbox = 40; // Wall size
 
 let snake = [{ x: 200, y: 200 }];
 
-let wall = { x: getWallPosition(), y: getWallposition()};
+let wall = { x: getWallposition(), y: getWallposition()};
 
 let food = { x: getRandomPosition(), y: getRandomPosition() };
 
