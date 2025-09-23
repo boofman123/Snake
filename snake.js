@@ -4,9 +4,9 @@ const ctx = canvas.getContext("2d");
 
 
 const snakeHeadImg = new Image();
-snakeHeadImg.src = "/https://github.com/boofman123/Snake/blob/main/images/snakehead.png";
+snakeHeadImg.src = "https://github.com/boofman123/Snake/blob/main/images/snakehead.png?raw=true";
 const snakeBodyImg = new Image();
-snakeBodyImg.src = "/https://github.com/boofman123/Snake/blob/main/images/snakebody.png";
+snakeBodyImg.src = "https://github.com/boofman123/Snake/blob/main/images/snakebody.png?raw=true";
 
 
 
