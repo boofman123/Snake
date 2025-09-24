@@ -262,19 +262,19 @@ function changeDirection(event) {
 
 
 
-    if (event.key === "ArrowUp" && dy === 0) { dx = 0; dy = -box; }
+    if (event.key === "ArrowUp" || event.key === "w" && dy === 0) { dx = 0; dy = -box; }
 
 
 
-    else if (event.key === "ArrowDown" && dy === 0) { dx = 0; dy = box; }
+    else if (event.key === "ArrowDown" || event.key === "s" && dy === 0) { dx = 0; dy = box; }
 
 
 
-    else if (event.key === "ArrowLeft" && dx === 0) { dx = -box; dy = 0; }
+    else if (event.key === "ArrowLeft" || event.key === "a" && dx === 0) { dx = -box; dy = 0; }
 
 
 
-    else if (event.key === "ArrowRight" && dx === 0) { dx = box; dy = 0; }
+    else if (event.key === "ArrowRight" || event.key === "d" && dx === 0) { dx = box; dy = 0; }
 
 
 

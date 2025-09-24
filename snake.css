@@ -50,7 +50,7 @@ canvas {
     color: red;
     text-decoration: none;
     font-size: 30px;
-    flex:auto;
+    flex-shrink: 1, 1, 1, 1;
 
     
 }
