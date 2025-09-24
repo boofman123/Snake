@@ -633,7 +633,7 @@ function drawGame() {
     //Draw poo
 
     ctx.fillStyle = "brown";
-    ctx.fillRect(poo.x, food.y, box, box);
+    ctx.fillRect(poo.x, poo.y, box, box);
 
 
 
