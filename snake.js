@@ -23,19 +23,19 @@ snakeBodyImg.src = "images/snakebody.png";
 
 //arrow keys for mobile
 
-document.getElementById("left").addEventListener("click", function() {
+document.getElementById("left").addEventListener("touchstart", function() {
     event = new KeyboardEvent('keydown', {'key': 'ArrowLeft'});
     document.dispatchEvent(event);  
 }); 
-document.getElementById("right").addEventListener("click", function() {
+document.getElementById("right").addEventListener("touchstart", function() {
     event = new KeyboardEvent('keydown', {'key': 'ArrowRight'});
     document.dispatchEvent(event);
 });         
-document.getElementById("up").addEventListener("click", function() {
+document.getElementById("up").addEventListener("touchstart", function() {
     event = new KeyboardEvent('keydown', {'key': 'ArrowUp'});
     document.dispatchEvent(event);
 }); 
-document.getElementById("down").addEventListener("click", function() {
+document.getElementById("down").addEventListener("touchstart", function() {
     event = new KeyboardEvent('keydown', {'key': 'ArrowDown'});
     document.dispatchEvent(event);
 });
