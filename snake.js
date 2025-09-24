@@ -51,8 +51,11 @@ document.getElementById("down").addEventListener("touchstart", function() {
 const box = 20; // Snake and food size
 
 
-
 const bigbox = 40; // Wall size
+
+ //start poo off screen  
+ let poo = { x: -box, y: -box };
+
 
 
 
@@ -293,10 +296,7 @@ function changeDirection(event) {
 function resetGame() {
 
 
-
     snake = [{ x: 200, y: 200 }];
-
-
 
     food = { x: getRandomPosition(), y: getRandomPosition() };
 
@@ -453,11 +453,28 @@ function updateGame() {
 
 
 
-    // Check if food is eaten
+   //check if food is eaten and score is 5 or more to spawn poo
+   
+   
+    
+    if (score >= 5 && newHead.x === food.x && newHead.y === food.y) {
 
+        score++;
+        document.getElementById("scorebox").textContent = `Score: ${score}`;
+        food = { x: getRandomPosition(), y: getRandomPosition() };
+        poo= { x: snake[snake.length - 1].x, y: snake[snake.length - 1].y }; //spawn poo at tail position
+        increaseSpeedIfNeeded && increaseSpeedIfNeeded();
 
-
-    if (newHead.x === food.x && newHead.y === food.y) {
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    else if (newHead.x === food.x && newHead.y === food.y) {
 
 
 
@@ -476,6 +493,8 @@ function updateGame() {
 
 
         increaseSpeedIfNeeded && increaseSpeedIfNeeded();
+
+
 
 
 
@@ -611,7 +630,10 @@ function drawGame() {
 
 
 
+    //Draw poo
 
+    ctx.fillStyle = "brown";
+    ctx.fillRect(poo.x, food.y, box, box);
 
 
 
@@ -704,7 +726,7 @@ function increaseSpeedIfNeeded() {
 
 
 
-    if (score > 0 && score % 5 === 0) {
+    if (score > 0 && score % 10 === 0) {
 
 
 
