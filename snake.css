@@ -70,7 +70,7 @@ canvas {
     height: 100vh;
     width: 100vw;
     }
-    #container, #bullshit, #spacer, #scorebox, canvas {
+    #bullshit, #spacer, #scorebox, canvas {
         flex-shrink: inherit;
         width: 90vw;
     }
