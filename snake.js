@@ -12,6 +12,8 @@ snakeBodyImg.src = "images/snakebody.png";
 
 let lives = 3; //start with 3 lives, goes down with poo collision
 
+document.getElementById("livesbox").textContent = `Lives: ${lives}`; //display lives
+
 
 
 //arrow keys for mobile
@@ -546,6 +548,8 @@ function drawGame() {
 
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+   
 
 
 
