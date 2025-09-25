@@ -402,24 +402,23 @@ function updateGame() {
 
 
         if (newHead.x === segment.x && newHead.y === segment.y) {
-
-
-
             gameOver();
-
-
-
             return;
+}
+     }
 
+    // Check for collision with poo
+    if (score >= 5) {
 
+        for (let segment of poocontainer) {
 
+            if (newHead.x === segment.x && newHead.y === segment.y) {
+                gameOver();
+                return;
+            }
         }
-
-
-
     }
-
-
+    
 
    //check if food is eaten and score is 5 or more to spawn poo
    
@@ -432,6 +431,9 @@ function updateGame() {
         food = { x: getRandomPosition(), y: getRandomPosition() };
         poo= { x: snake[snake.length - 1].x, y: snake[snake.length - 1].y }; //spawn poo at tail position
         poocontainer.push({x: poo.x, y: poo.y}); // Add poo position to container
+        if (poocontainer.length > 3) { // Limit number of poos on screen
+            poocontainer.shift(); // Remove oldest poo
+        }
         increaseSpeedIfNeeded && increaseSpeedIfNeeded();
 
     }
@@ -439,23 +441,9 @@ function updateGame() {
 
     
     else if (newHead.x === food.x && newHead.y === food.y) {
-
-
-
         score++;
-
-
-
         document.getElementById("scorebox").textContent = `Score: ${score}`;
-
-
-
-        food = { x: getRandomPosition(), y: getRandomPosition() };
-
-
-
-
-
+         food = { x: getRandomPosition(), y: getRandomPosition() };
         increaseSpeedIfNeeded && increaseSpeedIfNeeded();
 
 
