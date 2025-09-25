@@ -86,7 +86,7 @@ canvas {
     #Start{
 
     font-size: 24px;
-    height: auto ;
+    height: "50px";
     width: "75px";
     font-weight: bold;
     color: rgb(255, 0, 0);
