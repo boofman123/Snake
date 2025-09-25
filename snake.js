@@ -36,6 +36,7 @@ const box = 20; // Snake and food size
 
 const bigbox = 40; // Wall size
 
+let poocontainer = []; // Array to hold poo positions
 
 let poo = { x: -box, y: -box }; //start poo off screen
 
@@ -229,32 +230,11 @@ function getWallposition() {
 
 document.addEventListener("keydown", changeDirection);
 
-
-
-
-
-
-
 function changeDirection(event) {
-
-
-
     if (event.key === "ArrowUp" || event.key === "w" && dy === 0) { dx = 0; dy = -box; }
-
-
-
     else if (event.key === "ArrowDown" || event.key === "s" && dy === 0) { dx = 0; dy = box; }
-
-
-
     else if (event.key === "ArrowLeft" || event.key === "a" && dx === 0) { dx = -box; dy = 0; }
-
-
-
     else if (event.key === "ArrowRight" || event.key === "d" && dx === 0) { dx = box; dy = 0; }
-
-
-
 }
 
 
@@ -451,6 +431,7 @@ function updateGame() {
         document.getElementById("scorebox").textContent = `Score: ${score}`;
         food = { x: getRandomPosition(), y: getRandomPosition() };
         poo= { x: snake[snake.length - 1].x, y: snake[snake.length - 1].y }; //spawn poo at tail position
+        poocontainer.push({x: poo.x, y: poo.y}); // Add poo position to container
         increaseSpeedIfNeeded && increaseSpeedIfNeeded();
 
     }
@@ -569,6 +550,15 @@ function drawGame() {
 
 
 
+    //draw poo container poos
+    if (score >= 5) {
+
+        ctx.fillStyle = "brown"
+        poocontainer.forEach(poo => ctx.fillRect(poo.x, poo.y, box, box));
+    
+    }
+    
+    
     //Draw walls
 
 
