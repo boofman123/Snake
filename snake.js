@@ -522,6 +522,8 @@ function gameOver() {
 
     gameRunning = false;
 
+    document.getElementById("gameCanvas").style.backgroundColor = "black";
+
 
 
     alert(`Game Over! Score: ${score}`);
