@@ -274,6 +274,20 @@ function resetGame() {
 
     food = { x: getRandomPosition(), y: getRandomPosition() };
 
+    wall = []; // Clear walls on reset
+
+    let speed = 100; // Reset speed on game reset
+
+    updateSpeed(); // Apply the reset speed
+
+    poo = { x: -box, y: -box }; // Reset poo position off-screen
+
+    document.getElementById("gameCanvas").style.backgroundColor = "lightblue";
+
+    document.getElementById("bullshit").textContent = "";
+
+    document.getElementById("scorebox").textContent = `Score: 0`;
+
 
 
     dx = box;
