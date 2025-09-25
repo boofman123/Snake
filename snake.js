@@ -10,6 +10,9 @@ const snakeBodyImg = new Image();
 
 snakeBodyImg.src = "images/snakebody.png";
 
+let lives = 3; //start with 3 lives, goes down with poo collision
+
+function 
 //arrow keys for mobile
 
 document.getElementById("left").addEventListener("touchstart", function() {
@@ -413,7 +416,11 @@ function updateGame() {
         for (let segment of poocontainer) {
 
             if (newHead.x === segment.x && newHead.y === segment.y) {
-                gameOver();
+                lives--1;
+                if (lives <= 0) {
+                    gameOver();
+                    return;
+                }
                 return;
             }
         }
@@ -582,7 +589,10 @@ function drawGame() {
     drawSnake();
 
 
-
+    // Draw lives
+    ctx.fillStyle = "black";
+    ctx.font = "16px Arial";
+    ctx.fillText(`Lives: ${lives}`, 10, canvas.height - 10);
 }
 
 
