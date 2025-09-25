@@ -61,6 +61,7 @@ function startGame() {
 }
 
 document.getElementById("Start").addEventListener("click", function() {
+    this.style.display = 'none'; // Hide the button after clicking
     startGame();
 });   
 
