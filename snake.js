@@ -60,7 +60,7 @@ function startGame() {
     gameRunning = true;
 }
 
-getElementById("Start").addEventListener("click", function() {
+document.getElementById("Start").addEventListener("click", function() {
     startGame();
 });   
 
