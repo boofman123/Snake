@@ -1,25 +1,14 @@
 const canvas = document.getElementById("gameCanvas");
 
-
-
 const ctx = canvas.getContext("2d");
-
-
-
-
-
 
 const snakeHeadImg = new Image();
 
-
 snakeHeadImg.src = "images/snakehead.png";
-
 
 const snakeBodyImg = new Image();
 
-
 snakeBodyImg.src = "images/snakebody.png";
-
 
 //arrow keys for mobile
 
@@ -42,54 +31,36 @@ document.getElementById("down").addEventListener("touchstart", function() {
 
 
 
-
-
-
-
-
-
 const box = 20; // Snake and food size
 
 
 const bigbox = 40; // Wall size
 
- //start poo off screen  
- let poo = { x: -box, y: -box };
 
-
+let poo = { x: -box, y: -box }; //start poo off screen
 
 
 let snake = [{ x: 200, y: 200 }];
 
 
-
 let wall = []; // Array to hold parts of the wall
-
-
 
 let food = { x: getRandomPosition(), y: getRandomPosition() };
 
-
-
 let dx = box, dy = 0;
 
-
-
 let score = 0;
-
-
 
 let gameRunning = false; // Track if the game is running
 
 
 
 function startGame() {
-    alert("Press OK to start the game!");
     resetGame();
     gameRunning = true;
 }
 
-startGame();    
+getElementById("startButton").addEventListener("click", startGame);   
 
 
 
@@ -467,12 +438,7 @@ function updateGame() {
 
     }
     
-    
-    
-    
-    
-    
-    
+
     
     else if (newHead.x === food.x && newHead.y === food.y) {
 
@@ -535,19 +501,11 @@ function updateGame() {
 
 
 
-
-
-
-
     drawGame();
 
 
 
 }
-
-
-
-
 
 
 
@@ -574,13 +532,10 @@ function gameOver() {
         resetGame();
 
 
-
     }
 
 
-
 }
-
 
 
 
@@ -591,10 +546,7 @@ function gameOver() {
 function drawGame() {
 
 
-
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-
 
 
 
@@ -613,21 +565,12 @@ function drawGame() {
     }
 
 
-
-
-
-
-
     // Draw food
-
 
 
     ctx.fillStyle = "red";
 
-
-
     ctx.fillRect(food.x, food.y, box, box);
-
 
 
     //Draw poo
@@ -636,10 +579,7 @@ function drawGame() {
     ctx.fillRect(poo.x, poo.y, box, box);
 
 
-
     // Draw snake
-
-
 
 
     drawSnake();
@@ -650,62 +590,23 @@ function drawGame() {
 
 
 
-
-
-
-
-
-
-// Run game loop every 100ms
-
-
-
-
-
-
-
-
-
 // Dynamic game speed
 
 
-
-
-
 let speed = 100;
-
-
-
 
 
 let gameInterval = setInterval(updateGame, speed);
 
 
 
-
-
-
-
-
-
-
-
 function updateSpeed() {
-
-
-
 
 
     clearInterval(gameInterval);
 
 
-
-
-
     gameInterval = setInterval(updateGame, speed);
-
-
-
 
 
 }
