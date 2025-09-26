@@ -63,12 +63,15 @@ document.getElementById("back").addEventListener("click", function() {
     document.getElementById("howtoplay").style.display = 'none'; // Hide instructions
     document.getElementById("howto").style.display = 'block'; // Show the howto button again
     this.style.display = 'none'; // Hide the back button after clicking
+    document.getElementById("Start").style.display = 'block'; // Show the start button again
+    document.getElementById("gameCanvas").style.display = 'block'; // Show the start button again
 });
 
 document.getElementById("howto").addEventListener("click", function() {
     document.getElementById("howtoplay").style.display = 'block'; // Show instructions
     document.getElementById("back").style.display = 'block'; // Show back button
     this.style.display = 'none'; // Hide the howto button after clicking
+    document.getElementById("gameCanvas").style.display = 'none'; // Hide the start button after clicking
 });
 
 document.getElementById("Start").addEventListener("click", function() {
