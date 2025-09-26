@@ -56,6 +56,9 @@ function startGame() {
     resetGame();
     gameRunning = true;
 }
+
+document.getElementById("howtoplay").style.display = 'none'; // Hide instructions initially
+document.getElementById("back").style.display = 'none'; // Hide back button initially
 document.getElementById("back").addEventListener("click", function() {
     document.getElementById("howtoplay").style.display = 'none'; // Hide instructions
     document.getElementById("howto").style.display = 'block'; // Show the howto button again
