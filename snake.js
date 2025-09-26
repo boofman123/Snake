@@ -317,8 +317,9 @@ function updateGame() {
             if (newHead.x === segment.x && newHead.y === segment.y) {
               life--;
               document.getElementById("lifecontainer").textContent = `Lives: ${life}`;
-              segment.x = -box; // Move poo off-screen after collision
-              segment.y = -box;
+              // Remove the poo that was hit
+              poocontainer = poocontainer.filter(p => p.x !== segment.x || p.y !== segment.y);
+    
               if (life <= 0) {
                   gameOver();
               }
