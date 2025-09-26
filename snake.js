@@ -14,6 +14,10 @@ const pooImg = new Image();
 
 pooImg.src = "images/poo.png";
 
+const foodImg = new Image();
+
+foodImg.src = "images/burger.png";
+
 //arrow keys for mobile
 
 document.getElementById("left").addEventListener("touchstart", function() {
@@ -411,10 +415,12 @@ function drawGame() {
     }
     // Draw food
     ctx.fillStyle = "red";
-    ctx.fillRect(food.x, food.y, box, box);
+    ctx.drawImage(foodImg, food.x, food.y, box, box);
+
+
     //Draw poo
     ctx.fillStyle = "brown";
-    ctx.fillRect(poo.x, poo.y, box, box);
+    ctx.drawImage(pooImg, poo.x, poo.y, box, box);
     // Draw snake
     drawSnake();
 }
