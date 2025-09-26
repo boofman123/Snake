@@ -12,7 +12,7 @@ snakeBodyImg.src = "images/snakebody.png";
 
 const pooImg = new Image();
 
-pooImg.src = "images/poo.png";
+pooImg.src = "images/poop.png";
 
 const foodImg = new Image();
 
@@ -414,12 +414,10 @@ function drawGame() {
 
     }
     // Draw food
-    ctx.fillStyle = "red";
     ctx.drawImage(foodImg, food.x, food.y, box, box);
 
 
     //Draw poo
-    ctx.fillStyle = "brown";
     ctx.drawImage(pooImg, poo.x, poo.y, box, box);
     // Draw snake
     drawSnake();
