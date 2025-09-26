@@ -38,6 +38,7 @@ let food = { x: getRandomPosition(), y: getRandomPosition() }; // Initial food p
 let dx = box, dy = 0; // Initial movement direction
 let score = 0;  // Initial score
 let life = 3;   // Initial lives
+let lastWallScore = 0; // Track the score when the last wall was added
 let gameRunning = false; // Track if the game is running
 
 ///////OPEN SCREEN AND MENU////////
@@ -67,7 +68,14 @@ document.getElementById("Start").addEventListener("click", function() {
     startGame();
 });   
 
-function drawSnake() {
+/////FUNCTIONS//////
+
+function startGame() {    // Start or restart the game
+    resetGame();
+    gameRunning = true;
+}
+
+function drawSnake() {  // Draw snake with head rotation
     snake.forEach((segment, idx) => {
         if (idx === 0) {
             // Draw head with rotation
@@ -91,7 +99,7 @@ function drawSnake() {
     });
 }
 
-function generateLongWall(length = 4) {
+function generateLongWall(length = 4) {  // Generate a wall of given length
  let wallSegments;
     let tries = 0;
     do {
@@ -105,66 +113,27 @@ function generateLongWall(length = 4) {
                 y: direction ? startY : startY + i * bigbox
             });
         }
-
         tries++;
-
         // Limit attempts to avoid infinite loops
-
         if (tries > 100) break;
-
     } while (
-
         // Check overlap with snake
-
         wallSegments.some(seg => snake.some(s => s.x === seg.x && s.y === seg.y)) ||
-
         // Check overlap with food
-
         wallSegments.some(seg => food.x === seg.x && food.y === seg.y)
-
     );
-
     return wallSegments;
-
 }
 
 // Generate random position for food
-
-
-
 function getRandomPosition() {
-
-
-
     return Math.floor(Math.random() * (canvas.width / box)) * box;
-    
-
-
-
 }
-
-
-
 // Generate random position for walls
-
-
-
 function getWallposition() {
-
-
-
     return Math.floor(Math.random() * (canvas.width / bigbox)) * bigbox;
-
 }
-
-
-
-
-
-// Listen for arrow key input
-
-
-
+// Listen for arrow key / WASD presses
 document.addEventListener("keydown", changeDirection);
 
 function changeDirection(event) {
@@ -174,46 +143,28 @@ function changeDirection(event) {
     else if (event.key === "ArrowRight" && dx === 0 || event.key === "d" && dx === 0) { dx = box; dy = 0; }
 
 }
-
 // Reset the game state
-
 function resetGame() {
-
-
     snake = [{ x: 200, y: 200 }];
-
     food = { x: getRandomPosition(), y: getRandomPosition() };
-
     wall = []; // Clear walls on reset
-
     speed = 100; // Reset speed on game reset
-
     updateSpeed(); // Apply the reset speed
-
     increaseSpeedIfNeeded = null; // Reset speed increase function
-
     poo = { x: -box, y: -box }; // Reset poo position off-screen
-
     life = 3; // Reset lives on game reset
-
     document.getElementById("gameCanvas").style.backgroundColor = "lightblue";
-
     document.getElementById("bullshit").textContent = "";
-
     document.getElementById("scorebox").textContent = `Score: 0`;
-
+    score = 0;
     poocontainer = []; // Clear poo container
-
     dx = box;
     dy = 0;
     score = 0;
     gameRunning = true;
+    lastWallScore = 0; // Reset last wall score
 }
-
-let lastWallScore = 0; // Track the score when the last wall was added
-
 // Game loop
-
 function updateGame() {
     if (!gameRunning) return; // Stop the game if it's over
     document.getElementById("lifecontainer").textContent = `Lives: ${life}`;
@@ -230,8 +181,6 @@ function updateGame() {
         wall = generateLongWall(6); // Longer walls at higher scores
 
         lastWallScore = score;
-
-
     }
     // Check for wall collision
     if (newHead.x < 0 || newHead.x >= canvas.width || newHead.y < 0 || newHead.y >= canvas.height) {
