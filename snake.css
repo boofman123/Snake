@@ -8,6 +8,13 @@ canvas {
     background-color: #89CFF0
 }
 
+.snakeTitle {
+    background-color: aliceblue;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bolder;
+}
+
+
 #scorebox {
     font-size: 24px;
     margin-bottom: 5px;
@@ -102,6 +109,10 @@ canvas {
     width: 400px;
     border: black 4px solid;
     border-radius: 15%;
+    box-shadow: 5px 5px 5px lightslategray;
+}
+
+ul{
     list-style: none;
 }
 
