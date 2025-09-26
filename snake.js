@@ -1,27 +1,17 @@
+//////GLOBAL VARIABLES////////
+
 const canvas = document.getElementById("gameCanvas");
-
 const ctx = canvas.getContext("2d");
-
 const snakeHeadImg = new Image();
-
 snakeHeadImg.src = "images/snakehead.png";
-
 const snakeBodyImg = new Image();
-
 snakeBodyImg.src = "images/snakebody.png";
-
 const pooImg = new Image();
-
 pooImg.src = "images/poop.png";
-
 const foodImg = new Image();
-
 foodImg.src = "images/burger.png";
-
 const poonoise = new Audio("sounds/fart.mp3");
-
 //arrow keys for mobile
-
 document.getElementById("left").addEventListener("touchstart", function() {
     event = new KeyboardEvent('keydown', {'key': 'ArrowLeft'});
     document.dispatchEvent(event);  
@@ -38,38 +28,20 @@ document.getElementById("down").addEventListener("touchstart", function() {
     event = new KeyboardEvent('keydown', {'key': 'ArrowDown'});
     document.dispatchEvent(event);
 });
-
 const box = 20; // Snake and food size
-
-
 const bigbox = 40; // Wall size
-
 let poocontainer = []; // Array to hold poo positions
-
 let poo = { x: -box, y: -box }; //start poo off screen
-
-
 let snake = [{ x: 200, y: 200 }];
-
-
 let wall = []; // Array to hold parts of the wall
-
-let food = { x: getRandomPosition(), y: getRandomPosition() };
-
-let dx = box, dy = 0;
-
-let score = 0;
-
-let life = 3;
-
+let food = { x: getRandomPosition(), y: getRandomPosition() }; // Initial food position
+let dx = box, dy = 0; // Initial movement direction
+let score = 0;  // Initial score
+let life = 3;   // Initial lives
 let gameRunning = false; // Track if the game is running
 
-//please dont break
+///////OPEN SCREEN AND MENU////////
 
-function startGame() {
-    resetGame();
-    gameRunning = true;
-}
 
 document.getElementById("howtoplay").style.display = 'none'; // Hide instructions initially
 document.getElementById("back").style.display = 'none'; // Hide back button initially
@@ -116,38 +88,22 @@ function drawSnake() {
         } else {
             ctx.drawImage(snakeBodyImg, segment.x, segment.y, box, box);
         }
-
     });
-
-
 }
 
 function generateLongWall(length = 4) {
-
-    let wallSegments;
-
+ let wallSegments;
     let tries = 0;
-
     do {
-
         const direction = Math.random() < 0.5;
-
         let startX = getWallposition();
-
         let startY = getWallposition();
-
         wallSegments = [];
-
         for (let i = 0; i < length; i++) {
-
             wallSegments.push({
-
                 x: direction ? startX + i * bigbox : startX,
-
                 y: direction ? startY : startY + i * bigbox
-
             });
-
         }
 
         tries++;
@@ -340,7 +296,7 @@ function updateGame() {
             food = { x: getRandomPosition(), y: getRandomPosition() };
         }
         poocontainer.push({x: poo.x, y: poo.y}); // Add poo position to container
-        if (poocontainer.length > 3) { // Limit number of poos on screen
+        if (poocontainer.length > 3) { // Limit number of poos on screen 
             poocontainer.shift(); // Remove oldest poo
         }
         increaseSpeedIfNeeded && increaseSpeedIfNeeded();
@@ -425,6 +381,7 @@ function drawGame() {
 
 
     //Draw poo
+    if (score >= 5)
     ctx.drawImage(pooImg, poo.x, poo.y, box, box);
     // Draw snake
     drawSnake();
