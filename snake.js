@@ -272,7 +272,7 @@ function updateGame() {
     // Move snake by adding new head
     let newHead = { x: snake[0].x + dx, y: snake[0].y + dy };
     //Delete and add walls
-    if (score >= 10 && score % 5 === 0 && score !== lastWallScore) {
+    if (score >= 20 && score % 5 === 0 && score !== lastWallScore) {
         wall = generateLongWall(4);
         lastWallScore = score; // Update the last wall score
     }
@@ -290,7 +290,7 @@ function updateGame() {
         return;
     }
     // Check for collision with walls
-    if (score >= 10) {
+    if (score >= 20) {
         for (let segment of wall) {
             if (newHead.x === segment.x && newHead.y === segment.y) {
             gameOver();
@@ -311,7 +311,7 @@ function updateGame() {
      }
 
     // Check for collision with poo
-    if (score >= 5) {
+    if (score >= 10) {
 
 
         for (let segment of poocontainer) {
@@ -363,12 +363,12 @@ function updateGame() {
         document.getElementById("bullshit").textContent = "Getting faster!";
     }
 
-        else if (score === 10){
+        else if (score === 20){
 
             document.getElementById("bullshit").textContent = "Incoming walls!";
     }
 
-        else if (score === 20){
+        else if (score === 10){
 
             document.getElementById("bullshit").textContent = "Avoid your own poop!";
     }
