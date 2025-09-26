@@ -269,7 +269,7 @@ function updateGame() {
 
         lastWallScore = score;
 
-        getElementById("lifecontainer").textContent = `Lives: ${life}`;
+        document.getElementById("lifecontainer").textContent = `Lives: ${life}`;
 
     }
     // Check for wall collision
