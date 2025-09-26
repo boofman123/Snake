@@ -302,11 +302,12 @@ function updateGame() {
 function gameOver() {
 
     gameRunning = false;
-    alert(`Game Over! Score: ${score}`);
-    if (confirm("Play again?")) {
-        resetGame();
+    document.getElementById("gameCanvas").style.display = "none"
+    document.getElementById("gameOver").style.display = "block"
     }
 
+document.getElementById("gameOver").addEventListener("click", function) {
+    resetGame()
 }
 
 // Draw snake and food

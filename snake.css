@@ -116,3 +116,10 @@ ul{
     list-style: none;
 }
 
+#gameOver{
+    height: 400px;
+    width: 400px;
+    background-color: darkblue;
+    color: black;
+    font-size: 50px;
+}
