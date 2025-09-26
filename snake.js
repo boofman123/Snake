@@ -10,6 +10,10 @@ const snakeBodyImg = new Image();
 
 snakeBodyImg.src = "images/snakebody.png";
 
+const pooImg = new Image();
+
+pooImg.src = "images/poo.png";
+
 //arrow keys for mobile
 
 document.getElementById("left").addEventListener("touchstart", function() {
@@ -171,6 +175,7 @@ function getRandomPosition() {
 
 
     return Math.floor(Math.random() * (canvas.width / box)) * box;
+    
 
 
 
@@ -256,6 +261,8 @@ let lastWallScore = 0; // Track the score when the last wall was added
 
 function updateGame() {
     if (!gameRunning) return; // Stop the game if it's over
+    document.getElementById("lifecontainer").textContent = `Lives: ${life}`;
+    
     // Move snake by adding new head
     let newHead = { x: snake[0].x + dx, y: snake[0].y + dy };
     //Delete and add walls
@@ -269,7 +276,6 @@ function updateGame() {
 
         lastWallScore = score;
 
-        document.getElementById("lifecontainer").textContent = `Lives: ${life}`;
 
     }
     // Check for wall collision
