@@ -10,11 +10,6 @@ const snakeBodyImg = new Image();
 
 snakeBodyImg.src = "images/snakebody.png";
 
-
-
-
-
-
 //arrow keys for mobile
 
 document.getElementById("left").addEventListener("touchstart", function() {
@@ -33,8 +28,6 @@ document.getElementById("down").addEventListener("touchstart", function() {
     event = new KeyboardEvent('keydown', {'key': 'ArrowDown'});
     document.dispatchEvent(event);
 });
-
-
 
 const box = 20; // Snake and food size
 
@@ -59,8 +52,6 @@ let score = 0;
 
 let gameRunning = false; // Track if the game is running
 
-
-
 function startGame() {
     resetGame();
     gameRunning = true;
@@ -71,76 +62,27 @@ document.getElementById("Start").addEventListener("click", function() {
     startGame();
 });   
 
-
-
 function drawSnake() {
-
-
     snake.forEach((segment, idx) => {
-
-
         if (idx === 0) {
-
-
             // Draw head with rotation
-
-
             ctx.save();
-
-
             // Move origin to center of head
-
-
             ctx.translate(segment.x + box / 2, segment.y + box / 2);
-
-
-
-
-
             // Determine rotation angle based on direction
-
-
             let angle = 0;
-
-
             if (dx === box && dy === 0) angle = 0; // Right
-
-
             else if (dx === -box && dy === 0) angle = Math.PI; // Left
-
-
             else if (dx === 0 && dy === -box) angle = -Math.PI / 2; // Up
-
-
             else if (dx === 0 && dy === box) angle = Math.PI / 2; // Down
 
-
-
-
-
             ctx.rotate(angle);
-
-
             // Draw image centered
-
-
             ctx.drawImage(snakeHeadImg, -box / 2, -box / 2, box, box);
-
-
             ctx.restore();
-
-
         } else {
-
-
-
-
-
             ctx.drawImage(snakeBodyImg, segment.x, segment.y, box, box);
-
-
         }
-
 
     });
 
@@ -275,74 +217,27 @@ function resetGame() {
 
     document.getElementById("scorebox").textContent = `Score: 0`;
 
-
-    
-
     poocontainer = []; // Clear poo container
 
     dx = box;
-
-
-
     dy = 0;
-
-
-
     score = 0;
-
-
-
-
     gameRunning = true;
-
-    
-
-
-
 }
-
-
 
 let lastWallScore = 0; // Track the score when the last wall was added
 
-
-
 // Game loop
 
-
-
 function updateGame() {
-
-
-
     if (!gameRunning) return; // Stop the game if it's over
-
-
-
-
-
-
-
     // Move snake by adding new head
-
-
-
     let newHead = { x: snake[0].x + dx, y: snake[0].y + dy };
-
-
-
     //Delete and add walls
-
-
-
     if (score >= 10 && score % 5 === 0 && score !== lastWallScore) {
-
         wall = generateLongWall(4);
-
         lastWallScore = score; // Update the last wall score
-
     }
-
     else if (score >= 30 && score % 5 === 0 && score !== lastWallScore) {
 
         wall = generateLongWall(6); // Longer walls at higher scores
@@ -350,67 +245,23 @@ function updateGame() {
         lastWallScore = score;
 
     }
-
-
-
-
-
-
-
-
-
     // Check for wall collision
-
-
-
     if (newHead.x < 0 || newHead.x >= canvas.width || newHead.y < 0 || newHead.y >= canvas.height) {
-
-
-
         gameOver();
-
-
-
         return;
-
-
-
     }
-
-
-
     // Check for collision with walls
-
     if (score >= 10) {
-
-
-
         for (let segment of wall) {
-
-
-
             if (newHead.x === segment.x && newHead.y === segment.y) {
-
             gameOver();
-
             return;
-
         }
 
     }
-
     }
-
-
-
     // Check for self-collision
-
-
-
     for (let segment of snake) {
-
-
-
         if (newHead.x === segment.x && newHead.y === segment.y) {
             gameOver();
             return;
@@ -430,8 +281,6 @@ function updateGame() {
     }
 
    //check if food is eaten and score is 5 or more to spawn poo
-   
-   
     
     if (score >= 5 && newHead.x === food.x && newHead.y === food.y) {
 
@@ -446,27 +295,14 @@ function updateGame() {
         increaseSpeedIfNeeded && increaseSpeedIfNeeded();
 
     }
-    
-
-    
+      
     else if (newHead.x === food.x && newHead.y === food.y) {
         score++;
         document.getElementById("scorebox").textContent = `Score: ${score}`;
          food = { x: getRandomPosition(), y: getRandomPosition() };
         increaseSpeedIfNeeded && increaseSpeedIfNeeded();
-
-
-
-
-
     } else {
-
-
-
         snake.pop(); // Remove tail if no food is eaten
-
-
-
     }
 
 // Display messages at certain scores
@@ -491,64 +327,27 @@ function updateGame() {
             document.getElementById("bullshit").textContent = "Harry you cunt!";
     }
 
-
     snake.unshift(newHead); // Add new head
-
-
 
     drawGame();
 
-
-
 }
-
-
-
 // Handle game over
-
-
-
 function gameOver() {
 
-
-
     gameRunning = false;
-
     document.getElementById("gameCanvas").style.backgroundColor = "black";
-
-
-
     alert(`Game Over! Score: ${score}`);
-
-
-
     if (confirm("Play again?")) {
-
-
-
         resetGame();
-
-
     }
-
 
 }
 
-
-
 // Draw snake and food
-
-
-
 function drawGame() {
 
-
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-   
-
-
-
     //draw poo container poos
     if (score >= 5) {
 
@@ -556,57 +355,25 @@ function drawGame() {
         poocontainer.forEach(poo => ctx.fillRect(poo.x, poo.y, box, box));
     
     }
-    
-    
+      
     //Draw walls
-
-
-
     if (score >= 10) {
-
-
-
         ctx.fillStyle = "orange" 
-
         wall.forEach(segment => ctx.fillRect(segment.x, segment.y, bigbox, bigbox));
 
     }
-
-
     // Draw food
-
-
     ctx.fillStyle = "red";
-
     ctx.fillRect(food.x, food.y, box, box);
-
-
     //Draw poo
-
     ctx.fillStyle = "brown";
     ctx.fillRect(poo.x, poo.y, box, box);
-
-
     // Draw snake
-
-
     drawSnake();
-
-
-
 }
-
-
-
 // Dynamic game speed
-
-
 let speed = 100;
-
-
 let gameInterval = setInterval(updateGame, speed);
-
-
 
 function updateSpeed() {
 
@@ -618,47 +385,12 @@ function updateSpeed() {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
+// Increase speed based on score
 function increaseSpeedIfNeeded() {
-
-
-
-
-
     if (score > 0 && score % 10 === 0) {
-
-
-
-
-
         // Decrease interval (increase speed), but don't go below a minimum
-
-
-
-
-
         speed = Math.max(30, speed - 10);
-
-
-
-
-
         updateSpeed();
-
-
-
-
-
     }
 }
 
