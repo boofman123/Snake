@@ -102,5 +102,6 @@ canvas {
     width: 400px;
     border: black 4px solid;
     border-radius: 15%;
+    list-style: none;
 }
 
