@@ -21,7 +21,7 @@ canvas {
     flex-shrink: 1;
 }
 
-#bullshit {
+#lifecontainer, #bullshit {
     margin-top: 20px;
     margin-bottom: 20px;
     font-size: 16px;

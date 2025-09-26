@@ -269,6 +269,8 @@ function updateGame() {
 
         lastWallScore = score;
 
+        getElementById("lifecontainer").textContent = `Lives: ${life}`;
+
     }
     // Check for wall collision
     if (newHead.x < 0 || newHead.x >= canvas.width || newHead.y < 0 || newHead.y >= canvas.height) {
@@ -299,11 +301,14 @@ function updateGame() {
     // Check for collision with poo
     if (score >= 5) {
 
+
         for (let segment of poocontainer) {
 
             if (newHead.x === segment.x && newHead.y === segment.y) {
               life--;
               getElementById("lifecontainer").textContent = `Lives: ${life}`;
+              segment.x = -box; // Move poo off-screen after collision
+              segment.y = -box;
               if (life <= 0) {
                   gameOver();
               }
