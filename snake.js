@@ -12,6 +12,7 @@ snakeBodyImg.src = "images/snakebody.png";
 
 let lives = 3; //start with 3 lives, goes down with poo collision
 
+document.getElementById("livesbox").textContent = "3"; //display lives
 
 
 
