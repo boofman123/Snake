@@ -52,6 +52,8 @@ let score = 0;
 
 let gameRunning = false; // Track if the game is running
 
+//please dont break
+
 function startGame() {
     resetGame();
     gameRunning = true;
