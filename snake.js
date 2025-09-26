@@ -18,6 +18,8 @@ const foodImg = new Image();
 
 foodImg.src = "images/burger.png";
 
+const poonoise = new Audio("sounds/fart.mp3");
+
 //arrow keys for mobile
 
 document.getElementById("left").addEventListener("touchstart", function() {
@@ -243,7 +245,7 @@ function resetGame() {
 
     poo = { x: -box, y: -box }; // Reset poo position off-screen
 
-    let lives = 3; // Reset lives on game reset
+    let life = 3; // Reset lives on game reset
 
     document.getElementById("gameCanvas").style.backgroundColor = "lightblue";
 
@@ -315,6 +317,7 @@ function updateGame() {
         for (let segment of poocontainer) {
 
             if (newHead.x === segment.x && newHead.y === segment.y) {
+                poonoise.play(); // Play sound effect
               life--;
               document.getElementById("lifecontainer").textContent = `Lives: ${life}`;
               // Remove the poo that was hit
