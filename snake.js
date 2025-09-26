@@ -12,7 +12,6 @@ snakeBodyImg.src = "images/snakebody.png";
 
 let lives = 3; //start with 3 lives, goes down with poo collision
 
-document.getElementById("livesbox").textContent = "3"; //display lives
 
 
 
@@ -427,7 +426,7 @@ function updateGame() {
             if (newHead.x === segment.x && newHead.y === segment.y) {
                 lives--;
                 document.getElementById("livesbox").textContent = `Lives: ${lives}`; //display lives
-                if (lives <= 0) {
+                if (lives === 0) {
                     gameOver();
                     return;
                 } else {
