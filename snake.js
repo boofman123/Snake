@@ -212,21 +212,14 @@ function getWallposition() {
 document.addEventListener("keydown", changeDirection);
 
 function changeDirection(event) {
-    if (event.key === "ArrowUp" || event.key === "w" && dy === 0) { dx = 0; dy = -box; }
-    else if (event.key === "ArrowDown" || event.key === "s" && dy === 0) { dx = 0; dy = box; }
-    else if (event.key === "ArrowLeft" || event.key === "a" && dx === 0) { dx = -box; dy = 0; }
-    else if (event.key === "ArrowRight" || event.key === "d" && dx === 0) { dx = box; dy = 0; }
+    if (event.key === "ArrowUp" && dy === 0 || event.key === "w" && dy === 0) { dx = 0; dy = -box; }
+    else if (event.key === "ArrowDown" && dy ===0 || event.key === "s" && dy === 0) { dx = 0; dy = box; }
+    else if (event.key === "ArrowLeft" && dx === 0 || event.key === "a" && dx === 0) { dx = -box; dy = 0; }
+    else if (event.key === "ArrowRight" && dx === 0 || event.key === "d" && dx === 0) { dx = box; dy = 0; }
+
 }
 
-
-
-
-
-
-
 // Reset the game state
-
-
 
 function resetGame() {
 
@@ -335,10 +328,17 @@ function updateGame() {
     
     if (score >= 5 && newHead.x === food.x && newHead.y === food.y) {
 
+
         score++;
         document.getElementById("scorebox").textContent = `Score: ${score}`;
         food = { x: getRandomPosition(), y: getRandomPosition() };
         poo= { x: snake[snake.length - 1].x, y: snake[snake.length - 1].y }; //spawn poo at tail position
+        //avoid spawning food on snake or walls or poo  
+        while (snake.some(segment => segment.x === food.x && segment.y === food.y) ||
+               wall.some(segment => segment.x === food.x && segment.y === food.y) ||
+               poocontainer.some(p => p.x === food.x && p.y === food.y)) {
+            food = { x: getRandomPosition(), y: getRandomPosition() };
+        }
         poocontainer.push({x: poo.x, y: poo.y}); // Add poo position to container
         if (poocontainer.length > 3) { // Limit number of poos on screen
             poocontainer.shift(); // Remove oldest poo
@@ -351,6 +351,11 @@ function updateGame() {
         score++;
         document.getElementById("scorebox").textContent = `Score: ${score}`;
          food = { x: getRandomPosition(), y: getRandomPosition() };
+         //avoid spawning food on snake or walls
+         while (snake.some(segment => segment.x === food.x && segment.y === food.y) ||
+                wall.some(segment => segment.x === food.x && segment.y === food.y)) {
+            food = { x: getRandomPosition(), y: getRandomPosition() };
+        }
         increaseSpeedIfNeeded && increaseSpeedIfNeeded();
     } else {
         snake.pop(); // Remove tail if no food is eaten
