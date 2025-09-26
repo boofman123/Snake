@@ -237,7 +237,7 @@ function resetGame() {
 
     wall = []; // Clear walls on reset
 
-    let speed = 100; // Reset speed on game reset
+    speed = 100; // Reset speed on game reset
 
     updateSpeed(); // Apply the reset speed
 
@@ -245,7 +245,7 @@ function resetGame() {
 
     poo = { x: -box, y: -box }; // Reset poo position off-screen
 
-    let life = 3; // Reset lives on game reset
+    life = 3; // Reset lives on game reset
 
     document.getElementById("gameCanvas").style.backgroundColor = "lightblue";
 
