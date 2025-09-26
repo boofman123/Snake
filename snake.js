@@ -401,9 +401,7 @@ function drawGame() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     //draw poo container poos
     if (score >= 5) {
-
-        ctx.fillStyle = "brown"
-        poocontainer.forEach(poo => ctx.fillRect(poo.x, poo.y, box, box));
+        poocontainer.forEach(poo => ctx.drawImage(pooImg, poo.x, poo.y, box, box));
     
     }
       
