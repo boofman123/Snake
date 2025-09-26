@@ -340,12 +340,17 @@ function updateGame() {
 
         else if (score === 20){
 
-            document.getElementById("bullshit").textContent = "Hold on to your dicks!";
+            document.getElementById("bullshit").textContent = "Avoid your own poop!";
     }
 
     else if (score === 30){
 
-            document.getElementById("bullshit").textContent = "Harry you cunt!";
+            document.getElementById("bullshit").textContent = "Longer walls!";
+    }
+
+        else if (score === 50){ 
+            document.getElementById("bullshit").textContent = "Jesus Christ!";
+            document.getElementById("gameCanvas").style.backgroundColor = "gold";
     }
 
     snake.unshift(newHead); // Add new head

@@ -99,7 +99,8 @@ canvas {
     font-size: 20px;
     margin: 20px;
     font-family: Arial, Helvetica, sans-serif;
-    color: lightgoldenrodyellow;
+    background-color: lightslategray;
+    color: black
     height: 400px;
     width: 400px;
     border: black 4px solid;
