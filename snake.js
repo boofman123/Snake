@@ -274,7 +274,11 @@ function resetGame() {
 
     document.getElementById("scorebox").textContent = `Score: 0`;
 
+    let lives = 3; // Reset lives on game reset
 
+    document.getElementById("livesbox").textContent = `Lives: ${lives}`; // Update lives display
+
+    poocontainer = []; // Clear poo container
 
     dx = box;
 
