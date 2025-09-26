@@ -306,7 +306,7 @@ function updateGame() {
 
             if (newHead.x === segment.x && newHead.y === segment.y) {
               life--;
-              getElementById("lifecontainer").textContent = `Lives: ${life}`;
+              document.getElementById("lifecontainer").textContent = `Lives: ${life}`;
               segment.x = -box; // Move poo off-screen after collision
               segment.y = -box;
               if (life <= 0) {
