@@ -10,7 +10,7 @@ const snakeBodyImg = new Image();
 
 snakeBodyImg.src = "images/snakebody.png";
 
-let lives = 3; //start with 3 lives, goes down with poo collision
+
 
 
 
@@ -424,20 +424,11 @@ function updateGame() {
         for (let segment of poocontainer) {
 
             if (newHead.x === segment.x && newHead.y === segment.y) {
-                lives--;
-                document.getElementById("livesbox").textContent = `Lives: ${lives}`; //display lives
-                if (lives === 0) {
-                    gameOver();
-                    return;
-                } else {
-                    // Remove the poo that was collided with
-                    poocontainer = poocontainer.filter(poo => !(newHead.x === poo.x && newHead.y === poo.y));
-        
-                }
+              gameOver();
+              return;
             }
         }
     }
-    
 
    //check if food is eaten and score is 5 or more to spawn poo
    
