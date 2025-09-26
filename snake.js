@@ -268,6 +268,8 @@ function resetGame() {
 
     poo = { x: -box, y: -box }; // Reset poo position off-screen
 
+    let lives = 3; // Reset lives on game reset
+
     document.getElementById("gameCanvas").style.backgroundColor = "lightblue";
 
     document.getElementById("bullshit").textContent = "";
@@ -276,7 +278,7 @@ function resetGame() {
 
     document.getElementById("livesbox").textContent = `Lives: 3`; // Update lives display
 
-    let lives = 3; // Reset lives on game reset
+    
 
     poocontainer = []; // Clear poo container
 
