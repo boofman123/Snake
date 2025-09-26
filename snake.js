@@ -50,6 +50,8 @@ let dx = box, dy = 0;
 
 let score = 0;
 
+let life = 3;
+
 let gameRunning = false; // Track if the game is running
 
 //please dont break
@@ -228,6 +230,8 @@ function resetGame() {
 
     updateSpeed(); // Apply the reset speed
 
+    increaseSpeedIfNeeded = null; // Reset speed increase function
+
     poo = { x: -box, y: -box }; // Reset poo position off-screen
 
     let lives = 3; // Reset lives on game reset
@@ -278,7 +282,10 @@ function updateGame() {
             gameOver();
             return;
         }
-
+        if (newHead.x === wall.x && newHead.y === wall.y) {
+            gameOver();
+            return;
+        }
     }
     }
     // Check for self-collision
@@ -295,7 +302,11 @@ function updateGame() {
         for (let segment of poocontainer) {
 
             if (newHead.x === segment.x && newHead.y === segment.y) {
-              gameOver();
+              life--;
+              getElementById("lifecontainer").textContent = `Lives: ${life}`;
+              if (life <= 0) {
+                  gameOver();
+              }
               return;
             }
         }
