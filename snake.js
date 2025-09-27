@@ -69,7 +69,7 @@ document.getElementById("howto").addEventListener("click", function() {
 });
 
 document.getElementById("Start").addEventListener("click", function() {
-    getElementById(music).play()
+    document.getElementById(music).play()
     this.style.display = 'none'; // Hide the button after clicking
     document.getElementById("howto").style.display = 'none'; // Hide the howto button after clicking
     document.getElementById("howtoplay").style.display = 'none'; // Hide the instructions after clicking
