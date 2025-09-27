@@ -43,7 +43,8 @@ let lastWallScore = 0; // Track the score when the last wall was added
 let gameRunning = false; // Track if the game is running
 let volume = document.getElementById("volumeslider");
 volume.addEventListener("change", function(e) {
-    Audio.volume = e.currentTarget.value / 100;
+    Audio.music = e.currentTarget.value / 100;
+    Audio.poonoise = e.currentTarget.value / 100;
 
 })
 
