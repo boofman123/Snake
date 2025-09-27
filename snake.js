@@ -11,6 +11,7 @@ pooImg.src = "images/poop.png";
 const foodImg = new Image();
 foodImg.src = "images/burger.png";
 const poonoise = new Audio("sounds/fart.mp3");
+const music = new Audio("sounds/musicback.mp3");
 //arrow keys for mobile
 document.getElementById("left").addEventListener("touchstart", function() {
     event = new KeyboardEvent('keydown', {'key': 'ArrowLeft'});
@@ -40,7 +41,6 @@ let score = 0;  // Initial score
 let life = 3;   // Initial lives
 let lastWallScore = 0; // Track the score when the last wall was added
 let gameRunning = false; // Track if the game is running
-const music = new Audio("sounds/musicback.mp3")
 let volume = document.getElementById("volumeslider");
 volume.addEventListener("change", function(e) {
     Audio.volume = e.currentTarget.value / 100;
@@ -69,7 +69,7 @@ document.getElementById("howto").addEventListener("click", function() {
 });
 
 document.getElementById("Start").addEventListener("click", function() {
-    document.getElementById(music).play()
+    music.play();
     this.style.display = 'none'; // Hide the button after clicking
     document.getElementById("howto").style.display = 'none'; // Hide the howto button after clicking
     document.getElementById("howtoplay").style.display = 'none'; // Hide the instructions after clicking
