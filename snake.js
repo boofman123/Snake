@@ -40,6 +40,13 @@ let score = 0;  // Initial score
 let life = 3;   // Initial lives
 let lastWallScore = 0; // Track the score when the last wall was added
 let gameRunning = false; // Track if the game is running
+const music = new Audio("sounds/musicback.mp3")
+let volume = document.getElementById("volumeslider");
+volume.addEventListener("change", function(e) {
+    Audio.volume = e.currentTarget.value / 100;
+
+})
+
 
 ///////OPEN SCREEN AND MENU////////
 
@@ -62,11 +69,13 @@ document.getElementById("howto").addEventListener("click", function() {
 });
 
 document.getElementById("Start").addEventListener("click", function() {
+    getElementById(music).play()
     this.style.display = 'none'; // Hide the button after clicking
     document.getElementById("howto").style.display = 'none'; // Hide the howto button after clicking
     document.getElementById("howtoplay").style.display = 'none'; // Hide the instructions after clicking
     startGame();
 });   
+
 
 /////FUNCTIONS//////
 

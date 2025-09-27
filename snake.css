@@ -14,7 +14,8 @@ canvas {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bolder;
     font-style: italic;
-    color: royalblue;
+    color: black;
+    border: 5px solid royalblue
 }
 
 
@@ -37,6 +38,7 @@ canvas {
     color: red;
     font-family: Arial, Helvetica, sans-serif;
     flex:auto;
+    border: 5px solid black
 }
 
 #container {
