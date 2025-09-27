@@ -138,21 +138,26 @@ function getWallposition() {
 // Listen for arrow key / WASD presses
 document.addEventListener("keydown", changeDirection);
 
-function changeDirection(event) {
+function goup(event) {
+    if (event.key === "ArrowUp" && dy === 0 || event.key === "w" && dy === 0) { dx = 0; dy = -box; } //move up
+    if (event.key === "ArrowUp" && dy ===0 || event.key === "w" && dy === 0) { dx = 0; dy = box; } //dont collide
+}
+function godown(event){
+    if (event.key === "ArrowDown" && dy ===0 || event.key === "s" && dy === 0) { dx = 0; dy = box; }
+}
+function goleft(event){
+    if (event.key === "ArrowLeft" && dx === 0 || event.key === "a" && dx === 0) { dx = -box; dy = 0; }
+}
+function goright(event){
+    if (event.key === "ArrowRight" && dx === 0 || event.key === "d" && dx === 0) { dx = box; dy = 0; }
+}
 
-    directionqueue = []
-    up = dx = 0; dy = -box;
-    down = dx = 0; dy = box;
-    left = dx = -box; dy = 0; 
-    right = dx = box; dy = 0;
+let lastdirection = []
 
-
-    if (event.key === "ArrowUp" && dy === 0 || event.key === "w" && dy === 0) { up } 
-    else if (event.key === "ArrowDown" && dy ===0 || event.key === "s" && dy === 0) { down }
-    else if (event.key === "ArrowLeft" && dx === 0 || event.key === "a" && dx === 0) { left }
-    else if (event.key === "ArrowRight" && dx === 0 || event.key === "d" && dx === 0) { right }
+function nodirect() {
 
 }
+
 
 
 // Reset the game state
