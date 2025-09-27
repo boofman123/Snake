@@ -41,6 +41,8 @@ let life = 3;   // Initial lives
 let lastWallScore = 0; // Track the score when the last wall was added
 let gameRunning = false; // Track if the game is running
 
+
+
 ///////OPEN SCREEN AND MENU////////
 
 
@@ -137,12 +139,22 @@ function getWallposition() {
 document.addEventListener("keydown", changeDirection);
 
 function changeDirection(event) {
-    if (event.key === "ArrowUp" && dy === 0 || event.key === "w" && dy === 0) { dx = 0; dy = -box; }
-    else if (event.key === "ArrowDown" && dy ===0 || event.key === "s" && dy === 0) { dx = 0; dy = box; }
-    else if (event.key === "ArrowLeft" && dx === 0 || event.key === "a" && dx === 0) { dx = -box; dy = 0; }
-    else if (event.key === "ArrowRight" && dx === 0 || event.key === "d" && dx === 0) { dx = box; dy = 0; }
+
+    directionqueue = []
+    up = dx = 0; dy = -box;
+    down = dx = 0; dy = box;
+    left = dx = -box; dy = 0; 
+    right = dx = box; dy = 0;
+
+
+    if (event.key === "ArrowUp" && dy === 0 || event.key === "w" && dy === 0) { up } 
+    else if (event.key === "ArrowDown" && dy ===0 || event.key === "s" && dy === 0) { down }
+    else if (event.key === "ArrowLeft" && dx === 0 || event.key === "a" && dx === 0) { left }
+    else if (event.key === "ArrowRight" && dx === 0 || event.key === "d" && dx === 0) { right }
 
 }
+
+
 // Reset the game state
 function resetGame() {
     snake = [{ x: 200, y: 200 }];
