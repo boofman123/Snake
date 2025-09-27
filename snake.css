@@ -1,6 +1,7 @@
 body {
     text-align: center;
     font-family: Arial, sans-serif;
+    background-color: cornsilk;
 }
 
 canvas {
@@ -9,7 +10,7 @@ canvas {
 }
 
 .snakeTitle {
-    background-color: aliceblue;
+    background-color: cornsilk;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bolder;
 }
@@ -95,12 +96,13 @@ canvas {
     width: "75px";
     font-weight: bold;
     color: rgb(255, 0, 0);
-    background-color: aqua;
+    background-color: cornsilk;
     font-family: Arial, Helvetica, sans-serif;
     flex:auto; 
     }
 
 #howtoplay {
+    display: flex;
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
     background-color: lightslategray;
@@ -110,6 +112,8 @@ canvas {
     border: black 4px solid;
     border-radius: 15%;
     box-shadow: 5px 5px 5px lightslategray;
+    flex-direction: column;
+    justify-content: center;
 }
 
 ul{

@@ -293,6 +293,15 @@ function updateGame() {
             document.getElementById("gameCanvas").style.backgroundColor = "gold";
     }
 
+        else if (score === 70){
+            document.getElementById("bullshit").textContent = "You could really make it!";
+            document.getElementById("gameCanvas").style.backgroundColor = "black";
+        }
+
+            else if (score === 100) {
+                document.getElementById("bullshit").textContent = "Holy smokes, you are the snake master!";
+                gameOver();
+            }
     snake.unshift(newHead); // Add new head
 
     drawGame();
@@ -314,7 +323,7 @@ function drawGame() {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     //draw poo container poos
-    if (score >= 5) {
+    if (score >= 10) {
         poocontainer.forEach(poo => ctx.drawImage(pooImg, poo.x, poo.y, box, box));
     
     }
@@ -330,7 +339,7 @@ function drawGame() {
 
 
     //Draw poo
-    if (score >= 5)
+    if (score >= 10)
     ctx.drawImage(pooImg, poo.x, poo.y, box, box);
     // Draw snake
     drawSnake();
@@ -340,11 +349,7 @@ let speed = 100;
 let gameInterval = setInterval(updateGame, speed);
 
 function updateSpeed() {
-
-
     clearInterval(gameInterval);
-
-
     gameInterval = setInterval(updateGame, speed);
 
 
