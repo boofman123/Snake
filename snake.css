@@ -37,25 +37,17 @@ canvas {
 #lifecontainer, #bullshit{
     font-size: 16px;
     font-weight: bold;
-    color: red;
+    color:#12b7f8;
     font-family: Arial, Helvetica, sans-serif;
     flex:auto;
-    border: 2px solid black;
+    border: 1px solid black;
     border-radius: 15%;
    
 }
 
 
-#mute #fx{
-    font-size: 10px;
-    font-weight: bold;
-    color: black;
-    font-family: Arial, Helvetica, sans-serif;
-    flex:auto;
-    border: 2px solid black;
-    border-radius: 15%;
-    background-color: #12b7f8;
-}
+
+
 #container #volumecontainer {
     display: flex;
     flex-wrap: wrap;
