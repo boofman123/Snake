@@ -172,10 +172,12 @@ function getWallposition() {
 document.addEventListener("keydown", changeDirection);
 
 function changeDirection(event) {
-    if (event.key === "ArrowUp" && dy === 0 || event.key === "w" && dy === 0 && turnedthisframe ===false) { dx = 0; dy = -box; turnedthisframe = true}
+    if (event.key === "ArrowUp" || "ArrowDown" || "ArrowLeft" || "ArrowRight" || "w" || "s" || "a" || "d" && turnedthisframe === true) return;
+    else if (event.key === "ArrowUp" && dy === 0 || event.key === "w" && dy === 0 && turnedthisframe ===false) { dx = 0; dy = -box; turnedthisframe = true}
     else if (event.key === "ArrowDown" && dy ===0 || event.key === "s" && dy === 0 && turnedthisframe ===false) { dx = 0; dy = box; turnedthisframe = true}
     else if (event.key === "ArrowLeft" && dx === 0 || event.key === "a" && dx === 0 && turnedthisframe ===false) { dx = -box; dy = 0; turnedthisframe = true}
     else if (event.key === "ArrowRight" && dx === 0 || event.key === "d" && dx === 0 && turnedthisframe ===false) { dx = box; dy = 0; turnedthisframe = true}
+    
     
 
 }
