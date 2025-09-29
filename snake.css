@@ -10,7 +10,7 @@ canvas {
 }
 
 .snakeTitle {
-    background-color: gray;
+    background-color:#12b7f8;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bolder;
     font-style: italic;
@@ -46,14 +46,15 @@ canvas {
 }
 
 
-#mute {
+#mute #fx{
     font-size: 10px;
     font-weight: bold;
-    color: red;
+    color: black;
     font-family: Arial, Helvetica, sans-serif;
     flex:auto;
     border: 2px solid black;
     border-radius: 15%;
+    background-color: #12b7f8;
 }
 #container #volumecontainer {
     display: flex;
