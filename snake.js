@@ -166,16 +166,25 @@ function getWallposition() {
 // Listen for arrow key / WASD presses
 
 
+function goup()
+{dx = 0; dy = -box}
 
+function goright()
+{dx = box; dy = 0;}
 
+function goleft()
+{dx = -box; dy = 0;}
+
+function godown()
+{dx = 0; dy = box;}
 
 document.addEventListener("keydown", changeDirection);
 
 function changeDirection(event) {
-    if (event.key === "ArrowUp" && dy === 0 || event.key === "w" && dy === 0) { dx = 0; dy = -box; }
-    else if (event.key === "ArrowDown" && dy ===0 || event.key === "s" && dy === 0) { dx = 0; dy = box; }
-    else if (event.key === "ArrowLeft" && dx === 0 || event.key === "a" && dx === 0) { dx = -box; dy = 0; }
-    else if (event.key === "ArrowRight" && dx === 0 || event.key === "d" && dx === 0) { dx = box; dy = 0; }
+    if (event.key === "ArrowUp" && dy === 0 || event.key === "w" && dy === 0) {goup()}
+    else if (event.key === "ArrowDown" && dy ===0 || event.key === "s" && dy === 0) {godown()}
+    else if (event.key === "ArrowLeft" && dx === 0 || event.key === "a" && dx === 0) {goleft()}
+    else if (event.key === "ArrowRight" && dx === 0 || event.key === "d" && dx === 0) {goright()}
     
 
 }
