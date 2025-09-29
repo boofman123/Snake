@@ -12,6 +12,7 @@ const foodImg = new Image();
 foodImg.src = "images/burger.png";
 const poonoise = new Audio("sounds/fart.mp3");
 const music = new Audio("sounds/musicback.mp3");
+const silence = new Audio("sounds/silence.mp3")
 //arrow keys for mobile
 document.getElementById("left").addEventListener("touchstart", function() {
     event = new KeyboardEvent('keydown', {'key': 'ArrowLeft'});
@@ -42,6 +43,7 @@ let life = 3;   // Initial lives
 let lastWallScore = 0; // Track the score when the last wall was added
 let gameRunning = false; // Track if the game is running
 let volume = true
+let fx = true
 document.getElementById("mute").addEventListener("click", function() {
     if (volume === true ) {
         music.pause()
@@ -51,10 +53,20 @@ document.getElementById("mute").addEventListener("click", function() {
         music.play()
         volume = true
     }
-}
+});
 
-  
-)
+document.getElementById("fx").addEventListener("click", function(){
+    if (fx === true) {
+        poonoise = silence
+        fx = false
+    }
+    else if (fx === false) {
+        poonoise = new Audio("sounds/fart.mp3")
+    }
+})
+
+
+
 
 
 ///////OPEN SCREEN AND MENU////////

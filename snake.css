@@ -15,7 +15,9 @@ canvas {
     font-weight: bolder;
     font-style: italic;
     color: black;
-    border: 5px solid royalblue
+    border: 3px solid black;
+    border-radius: 20%;
+    
 }
 
 
@@ -32,22 +34,35 @@ canvas {
     flex-shrink: 1;
 }
 
-#lifecontainer, #bullshit {
+#lifecontainer, #bullshit{
     font-size: 16px;
     font-weight: bold;
     color: red;
     font-family: Arial, Helvetica, sans-serif;
     flex:auto;
-    border: 5px solid black
+    border: 2px solid black;
+    border-radius: 15%;
+   
 }
 
-#container {
+
+#mute {
+    font-size: 10px;
+    font-weight: bold;
+    color: red;
+    font-family: Arial, Helvetica, sans-serif;
+    flex:auto;
+    border: 2px solid black;
+    border-radius: 15%;
+}
+#container #volumecontainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 30px;
     height: 50px;
+    margin-top: 10px;
 
 }
 
