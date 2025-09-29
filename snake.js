@@ -103,6 +103,7 @@ document.getElementById("Start").addEventListener("click", function() {
 function startGame() {    // Start or restart the game
     resetGame();
     gameRunning = true;
+    turnedthisframe = false
 }
 
 function drawSnake() {  // Draw snake with head rotation
@@ -201,8 +202,9 @@ function resetGame() {
     score = 0;
     gameRunning = true;
     lastWallScore = 0; // Reset last wall score
+    turnedthisframe = false
 }
-// Game loop
+///////////////////Game loop//////////////////////////////
 function updateGame() {
     if (!gameRunning) return; // Stop the game if it's over
     turnedthisframe = false
