@@ -44,7 +44,6 @@ let lastWallScore = 0; // Track the score when the last wall was added
 let gameRunning = false; // Track if the game is running
 let volume = true
 let fx = true
-turnedthisframe = false; 
 document.getElementById("mute").addEventListener("click", function() {
     if (volume === true ) {
         music.pause()
@@ -104,7 +103,6 @@ document.getElementById("Start").addEventListener("click", function() {
 function startGame() {    // Start or restart the game
     resetGame();
     gameRunning = true;
-    turnedthisframe = false
 }
 
 function drawSnake() {  // Draw snake with head rotation
@@ -174,12 +172,10 @@ function getWallposition() {
 document.addEventListener("keydown", changeDirection);
 
 function changeDirection(event) {
-    if (event.key === "ArrowUp" || "ArrowDown" || "ArrowLeft" || "ArrowRight" || "w" || "s" || "a" || "d" && !turnedthisframe) return;
-    else if (event.key === "ArrowUp" && dy === 0  && !turnedthisframe ||  event.key === "w" && dy === 0 && !turnedthisframe) { dx = 0; dy = -box; turnedthisframe = true}
-    else if (event.key === "ArrowDown" && dy ===0 && !turnedthisframe || event.key === "s" && dy === 0 && !turnedthisframe ) { dx = 0; dy = box; turnedthisframe = true}
-    else if (event.key === "ArrowLeft" && dx === 0 && !turnedthisframe || event.key === "a" && dx === 0 && !turnedthisframe ) { dx = -box; dy = 0; turnedthisframe = true}
-    else if (event.key === "ArrowRight" && dx === 0 && !turnedthisframe ||  event.key === "d" && dx === 0 && !turnedthisframe) { dx = box; dy = 0; turnedthisframe = true}
-    
+    if (event.key === "ArrowUp" && dy === 0 || event.key === "w" && dy === 0) { dx = 0; dy = -box; }
+    else if (event.key === "ArrowDown" && dy ===0 || event.key === "s" && dy === 0) { dx = 0; dy = box; }
+    else if (event.key === "ArrowLeft" && dx === 0 || event.key === "a" && dx === 0) { dx = -box; dy = 0; }
+    else if (event.key === "ArrowRight" && dx === 0 || event.key === "d" && dx === 0) { dx = box; dy = 0; }
     
 
 }
@@ -201,15 +197,12 @@ function resetGame() {
     dx = box;
     dy = 0;
     score = 0;
-    !turnedthisframe
     gameRunning = true;
     lastWallScore = 0; // Reset last wall score
-   
 }
-///////////////////Game loop//////////////////////////////
+// Game loop
 function updateGame() {
     if (!gameRunning) return; // Stop the game if it's over
-    !turnedthisframe
     document.getElementById("lifecontainer").textContent = `Lives: ${life}`;
     
     // Move snake by adding new head
