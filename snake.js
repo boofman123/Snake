@@ -10,7 +10,7 @@ const pooImg = new Image();
 pooImg.src = "images/poop.png";
 const foodImg = new Image();
 foodImg.src = "images/burger.png";
-const poonoise = new Audio("sounds/fart.mp3");
+let poonoise = new Audio("sounds/fart.mp3");
 const music = new Audio("sounds/musicback.mp3");
 const silence = new Audio("sounds/silence.mp3")
 //arrow keys for mobile
