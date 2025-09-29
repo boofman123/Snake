@@ -44,7 +44,7 @@ let lastWallScore = 0; // Track the score when the last wall was added
 let gameRunning = false; // Track if the game is running
 let volume = true
 let fx = true
-Boolean turnedthisframe = false; 
+turnedthisframe = false; 
 document.getElementById("mute").addEventListener("click", function() {
     if (volume === true ) {
         music.pause()
