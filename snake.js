@@ -167,7 +167,7 @@ function getWallposition() {
 
 
 
-let turnedthisframe = false
+
 
 document.addEventListener("keydown", changeDirection);
 
