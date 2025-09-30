@@ -165,34 +165,38 @@ function getWallposition() {
 }
 // Listen for arrow key / WASD presses
 
-lastdirection = []  /////queue for keyinputs
+let lastdirection = []  /////queue for keyinputs
+let up
+let down
+let right
+let left
 
 function goup()
-{dx = 0; dy = -box; lastdirection.push(up); lastdirection.shift()} 
+{dx = 0; dy = -box; lastdirection.push(up);} 
 
 function goright()
-{dx = box; dy = 0; lastdirection.push(right); lastdirection.shift()}
+{dx = box; dy = 0; lastdirection.push(right)}
 
 function goleft()
-{dx = -box; dy = 0; lastdirection.push(left); lastdirection.shift()}
+{dx = -box; dy = 0; lastdirection.push(left)}
 
 function godown()
-{dx = 0; dy = box; lastdirection.push(down); lastdirection.shift()}
+{dx = 0; dy = box; lastdirection.push(down);}
 
 document.addEventListener("keydown", changeDirection);
 
 function changeDirection(event) {
-    if (event.key === "ArrowUp" && dy === 0 && lastdirection.length>=1|| event.key === "w" && dy === 0 && lastdirection.length>=1) {setTimeout(goup(), 100)}
-    else if(event.key === "ArrowUp" && dy === 0 || event.key === "w" && dy === 0) {goup()}
+    if (event.key === "ArrowUp" && dy === 0 && lastdirection.length>=1|| event.key === "w" && dy === 0 && lastdirection.length>=1) {setTimeout(goup(), 150)}
+    else if(event.key === "ArrowUp" && dy === 0 && lastdirection.length === 0|| event.key === "w" && dy === 0 && lastdirection.length === 0) {goup()}
    
-    else if (event.key === "ArrowDown" && dy ===0 && lastdirection.length>=1|| event.key === "s" && dy === 0 && lastdirection.length>=1) {setTimeout(godown(), 100)}
-    else if (event.key === "ArrowDown" && dy ===0 || event.key === "s" && dy === 0) {godown()}
+    else if (event.key === "ArrowDown" && dy ===0 && lastdirection.length>=1|| event.key === "s" && dy === 0 && lastdirection.length>=1) {setTimeout(godown(), 150)}
+    else if (event.key === "ArrowDown" && dy ===0 && lastdirection.length === 0 || event.key === "s" && dy === 0 && lastdirection.length === 0) {godown()}
     
-    else if (event.key === "ArrowLeft" && dx === 0 && lastdirection.length>=1 || event.key === "a" && dx === 0 && lastdirection.length>=1) {setTimeout(goleft(), 100)}
-    else if (event.key === "ArrowLeft" && dx === 0 || event.key === "a" && dx === 0) {goleft()}
+    else if (event.key === "ArrowLeft" && dx === 0 && lastdirection.length>=1 || event.key === "a" && dx === 0 && lastdirection.length>=1) {setTimeout(goleft(), 150)}
+    else if (event.key === "ArrowLeft" && dx === 0 && lastdirection.length === 0 || event.key === "a" && dx === 0 && lastdirection.length === 0) {goleft()}
     
-    else if (event.key === "ArrowRight" && dx === 0 && lastdirection.length>=1 || event.key === "d" && dx === 0 && lastdirection.length>=1) {setTimeout(goright(), 100)}
-    else if (event.key === "ArrowRight" && dx === 0 || event.key === "d" && dx === 0) {goright()}
+    else if (event.key === "ArrowRight" && dx === 0 && lastdirection.length>=1 || event.key === "d" && dx === 0 && lastdirection.length>=1) {setTimeout(goright(), 150)}
+    else if (event.key === "ArrowRight" && dx === 0 && lastdirection.length === 0 || event.key === "d" && dx === 0 && lastdirection.length === 0) {goright()}
     
 
 }
@@ -216,10 +220,12 @@ function resetGame() {
     score = 0;
     gameRunning = true;
     lastWallScore = 0; // Reset last wall score
+    lastdirection = []
 }
 // Game loop
 function updateGame() {
     if (!gameRunning) return; // Stop the game if it's over
+    lastdirection.shift()
     document.getElementById("lifecontainer").textContent = `Lives: ${life}`;
     
     // Move snake by adding new head
