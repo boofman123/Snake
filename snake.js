@@ -165,7 +165,7 @@ function getWallposition() {
 }
 // Listen for arrow key / WASD presses
 
-lastdirection = []
+lastdirection = []  /////queue for keyinputs
 
 function goup()
 {dx = 0; dy = -box; lastdirection.push(up); lastdirection.shift()} 
@@ -185,10 +185,13 @@ function changeDirection(event) {
     if (event.key === "ArrowUp" && dy === 0 && lastdirection.length>=1|| event.key === "w" && dy === 0 && lastdirection.length>=1) {setTimeout(goup(), 100)}
     else if(event.key === "ArrowUp" && dy === 0 || event.key === "w" && dy === 0) {goup()}
    
+    else if (event.key === "ArrowDown" && dy ===0 && lastdirection.length>=1|| event.key === "s" && dy === 0 && lastdirection.length>=1) {setTimeout(godown(), 100)}
     else if (event.key === "ArrowDown" && dy ===0 || event.key === "s" && dy === 0) {godown()}
     
+    else if (event.key === "ArrowLeft" && dx === 0 && lastdirection.length>=1 || event.key === "a" && dx === 0 && lastdirection.length>=1) {setTimeout(goleft(), 100)}
     else if (event.key === "ArrowLeft" && dx === 0 || event.key === "a" && dx === 0) {goleft()}
     
+    else if (event.key === "ArrowRight" && dx === 0 && lastdirection.length>=1 || event.key === "d" && dx === 0 && lastdirection.length>=1) {setTimeout(goright(), 100)}
     else if (event.key === "ArrowRight" && dx === 0 || event.key === "d" && dx === 0) {goright()}
     
 
