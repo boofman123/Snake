@@ -217,7 +217,7 @@ function resetGame() {
     score = 0;
     gameRunning = true;
     lastWallScore = 0; // Reset last wall score
-    lastdirection = []
+    lastdirection = ["first"]
 }
 // Game loop
 function updateGame() {
