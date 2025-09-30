@@ -165,18 +165,19 @@ function getWallposition() {
 }
 // Listen for arrow key / WASD presses
 
+lastdirection = []
 
 function goup()
-{dx = 0; dy = -box}
+{dx = 0; dy = -box; lastdirection.push(up)} 
 
 function goright()
-{dx = box; dy = 0;}
+{dx = box; dy = 0; lastdirection.push(right)}
 
 function goleft()
-{dx = -box; dy = 0;}
+{dx = -box; dy = 0; lastdirection.push(left)}
 
 function godown()
-{dx = 0; dy = box;}
+{dx = 0; dy = box; lastdirection.push(down)}
 
 document.addEventListener("keydown", changeDirection);
 
