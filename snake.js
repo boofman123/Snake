@@ -187,17 +187,17 @@ function godown()
 document.addEventListener("keydown", changeDirection);
 
 function changeDirection(event) {
-    if (event.key === "ArrowUp" && dy === 0 && lastdirection.length >= 1|| event.key === "w" && dy === 0 && lastdirection.length >= 1) {setTimeout(goup(), 150)}
-    else if(event.key === "ArrowUp" && dy === 0 && lastdirection.length === 0|| event.key === "w" && dy === 0 && lastdirection.length === 0) {goup()}
+    if (lastdirection.length >= 1 && event.key === "ArrowUp" && dy === 0 || lastdirection.length >= 1 && event.key === "w" && dy === 0 ) {setTimeout(goup(), speed)}
+    else if(lastdirection.length === 0 && event.key === "ArrowUp" && dy === 0 || lastdirection.length === 0 && event.key === "w" && dy === 0) {goup()}
    
-    else if (event.key === "ArrowDown" && dy ===0 && lastdirection.length >= 1 || event.key === "s" && dy === 0 && lastdirection.length >= 1 ) {setTimeout(godown(), 150)}
-    else if (event.key === "ArrowDown" && dy ===0 && lastdirection.length === 0 || event.key === "s" && dy === 0 && lastdirection.length === 0) {godown()}
+    else if (lastdirection.length >= 1 && event.key === "ArrowDown" && dy ===0 || lastdirection.length >= 1 && event.key === "s" && dy === 0 ) {setTimeout(godown(), speed)}
+    else if (lastdirection.length === 0 && event.key === "ArrowDown" && dy ===0 || lastdirection.length === 0 && event.key === "s" && dy === 0) {godown()}
     
-    else if (event.key === "ArrowLeft" && dx === 0 && lastdirection.length >= 1 || event.key === "a" && dx === 0 && lastdirection.length >= 1 ) {setTimeout(goleft(), 150)}
-    else if (event.key === "ArrowLeft" && dx === 0 && lastdirection.length === 0 || event.key === "a" && dx === 0 && lastdirection.length === 0) {goleft()}
+    else if (lastdirection.length >= 1 && event.key === "ArrowLeft" && dx === 0 || lastdirection.length >= 1 && event.key === "a" && dx === 0 ) {setTimeout(goleft(), speed)}
+    else if (lastdirection.length === 0 && event.key === "ArrowLeft" && dx === 0|| lastdirection.length === 0 && event.key === "a" && dx === 0) {goleft()}
     
-    else if (event.key === "ArrowRight" && dx === 0 && lastdirection.length >= 1 || event.key === "d" && dx === 0 && lastdirection.length >= 1 ) {setTimeout(goright(), 150)}
-    else if (event.key === "ArrowRight" && dx === 0 && lastdirection.length === 0 || event.key === "d" && dx === 0 && lastdirection.length === 0) {goright()}
+    else if (lastdirection.length >= 1 && event.key === "ArrowRight" && dx === 0 || lastdirection.length >= 1 && event.key === "d" && dx === 0) {setTimeout(goright(), speed)}
+    else if (lastdirection.length === 0 && event.key === "ArrowRight" && dx === 0|| lastdirection.length === 0 && event.key === "d" && dx === 0) {goright()}
     
 
 }
@@ -227,7 +227,9 @@ function resetGame() {
 function updateGame() {
     if (!gameRunning) return; // Stop the game if it's over
     
-    if (lastdirection.length > 0) console.log (lastdirection), lastdirection.shift(), console.log(lastdirection)
+    if (lastdirection.length > 0) {
+        console.log (lastdirection), lastdirection.shift(), console.log(lastdirection)
+    }
 
     document.getElementById("lifecontainer").textContent = `Lives: ${life}`;
     
