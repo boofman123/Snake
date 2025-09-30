@@ -32,7 +32,7 @@ document.getElementById("down").addEventListener("touchstart", function() {
 });
 const box = 20; // Snake and food size
 const bigbox = 40; // Wall size
-let lastdirection = []  /////queue for keyinputs
+let lastdirection = [];  /////queue for keyinputs
 let up = "up"
 let down = "down"
 let right = "right"
@@ -47,8 +47,8 @@ let score = 0;  // Initial score
 let life = 3;   // Initial lives
 let lastWallScore = 0; // Track the score when the last wall was added
 let gameRunning = false; // Track if the game is running
-let volume = true
-let fx = true
+let volume = true;
+let fx = true;
 document.getElementById("mute").addEventListener("click", function() {
     if (volume === true ) {
         music.pause()
@@ -173,30 +173,30 @@ function getWallposition() {
 
 
 function goup()
-{dx = 0; dy = -box; lastdirection.push(up);} 
+{lastdirection.push(up); dx = 0; dy = -box;} 
 
 function goright()
-{dx = box; dy = 0; lastdirection.push(right)}
+{lastdirection.push(right); dx = box; dy = 0; }
 
 function goleft()
-{dx = -box; dy = 0; lastdirection.push(left)}
+{lastdirection.push(left); dx = -box; dy = 0;}
 
 function godown()
-{dx = 0; dy = box; lastdirection.push(down);}
+{lastdirection.push(down); dx = 0; dy = box; }
 
 document.addEventListener("keydown", changeDirection);
 
 function changeDirection(event) {
-    if (event.key === "ArrowUp" && dy === 0 && lastdirection.length>=1|| event.key === "w" && dy === 0 && lastdirection.length>=1) {setTimeout(goup(), 150)}
+    if (event.key === "ArrowUp" && dy === 0 && lastdirection.length >= 1|| event.key === "w" && dy === 0 && lastdirection.length >= 1) {setTimeout(goup(), 150)}
     else if(event.key === "ArrowUp" && dy === 0 && lastdirection.length === 0|| event.key === "w" && dy === 0 && lastdirection.length === 0) {goup()}
    
-    else if (event.key === "ArrowDown" && dy ===0 && lastdirection.length>=1|| event.key === "s" && dy === 0 && lastdirection.length>=1) {setTimeout(godown(), 150)}
+    else if (event.key === "ArrowDown" && dy ===0 && lastdirection.length >= 1 || event.key === "s" && dy === 0 && lastdirection.length >= 1 ) {setTimeout(godown(), 150)}
     else if (event.key === "ArrowDown" && dy ===0 && lastdirection.length === 0 || event.key === "s" && dy === 0 && lastdirection.length === 0) {godown()}
     
-    else if (event.key === "ArrowLeft" && dx === 0 && lastdirection.length>=1 || event.key === "a" && dx === 0 && lastdirection.length>=1) {setTimeout(goleft(), 150)}
+    else if (event.key === "ArrowLeft" && dx === 0 && lastdirection.length >= 1 || event.key === "a" && dx === 0 && lastdirection.length >= 1 ) {setTimeout(goleft(), 150)}
     else if (event.key === "ArrowLeft" && dx === 0 && lastdirection.length === 0 || event.key === "a" && dx === 0 && lastdirection.length === 0) {goleft()}
     
-    else if (event.key === "ArrowRight" && dx === 0 && lastdirection.length>=1 || event.key === "d" && dx === 0 && lastdirection.length>=1) {setTimeout(goright(), 150)}
+    else if (event.key === "ArrowRight" && dx === 0 && lastdirection.length >= 1 || event.key === "d" && dx === 0 && lastdirection.length >= 1 ) {setTimeout(goright(), 150)}
     else if (event.key === "ArrowRight" && dx === 0 && lastdirection.length === 0 || event.key === "d" && dx === 0 && lastdirection.length === 0) {goright()}
     
 
