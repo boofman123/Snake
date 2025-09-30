@@ -32,7 +32,7 @@ document.getElementById("down").addEventListener("touchstart", function() {
 });
 const box = 20; // Snake and food size
 const bigbox = 40; // Wall size
-let lastdirection = [];  /////queue for keyinputs
+let lastdirection = ["first"];  /////queue for keyinputs
 let up = "up"
 let down = "down"
 let right = "right"
