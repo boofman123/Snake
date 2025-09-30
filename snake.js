@@ -226,7 +226,8 @@ function resetGame() {
 // Game loop
 function updateGame() {
     if (!gameRunning) return; // Stop the game if it's over
-    if (lastdirection.length > 0) lastdirection.shift(), console.log(lastdirection)
+    
+    if (lastdirection.length > 0) console.log (lastdirection), lastdirection.shift(), console.log(lastdirection)
 
     document.getElementById("lifecontainer").textContent = `Lives: ${life}`;
     
