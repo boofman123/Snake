@@ -187,18 +187,16 @@ function godown()
 document.addEventListener("keydown", changeDirection);
 
 function changeDirection(event) {
-    if (lastdirection.length >= 1 && event.key === "ArrowUp" && dy === 0 || lastdirection.length >= 1 && event.key === "w" && dy === 0 ) {setTimeout(goup(), speed)}
-    else if(lastdirection.length === 0 && event.key === "ArrowUp" && dy === 0 || lastdirection.length === 0 && event.key === "w" && dy === 0) {goup()}
-   
-    else if (lastdirection.length >= 1 && event.key === "ArrowDown" && dy ===0 || lastdirection.length >= 1 && event.key === "s" && dy === 0 ) {setTimeout(godown(), speed)}
+    if (lastdirection.length >= 1 && event.key === "ArrowUp" && dy === 0 || lastdirection.length >= 1 && event.key === "w" && dy === 0 ) {setTimeout(goup(), 500)}
+   else if (lastdirection.length >= 1 && event.key === "ArrowDown" && dy ===0 || lastdirection.length >= 1 && event.key === "s" && dy === 0 ) {setTimeout(godown(), 500)}
+   else if (lastdirection.length >= 1 && event.key === "ArrowLeft" && dx === 0 || lastdirection.length >= 1 && event.key === "a" && dx === 0 ) {setTimeout(goleft(), 500)}
+   else if (lastdirection.length >= 1 && event.key === "ArrowRight" && dx === 0 || lastdirection.length >= 1 && event.key === "d" && dx === 0) {setTimeout(goright(), 500)}
+  
+
     else if (lastdirection.length === 0 && event.key === "ArrowDown" && dy ===0 || lastdirection.length === 0 && event.key === "s" && dy === 0) {godown()}
-    
-    else if (lastdirection.length >= 1 && event.key === "ArrowLeft" && dx === 0 || lastdirection.length >= 1 && event.key === "a" && dx === 0 ) {setTimeout(goleft(), speed)}
     else if (lastdirection.length === 0 && event.key === "ArrowLeft" && dx === 0|| lastdirection.length === 0 && event.key === "a" && dx === 0) {goleft()}
-    
-    else if (lastdirection.length >= 1 && event.key === "ArrowRight" && dx === 0 || lastdirection.length >= 1 && event.key === "d" && dx === 0) {setTimeout(goright(), speed)}
     else if (lastdirection.length === 0 && event.key === "ArrowRight" && dx === 0|| lastdirection.length === 0 && event.key === "d" && dx === 0) {goright()}
-    
+    else if(lastdirection.length === 0 && event.key === "ArrowUp" && dy === 0 || lastdirection.length === 0 && event.key === "w" && dy === 0) {goup()}
 
 }
 // Reset the game state
