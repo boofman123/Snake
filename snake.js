@@ -225,7 +225,8 @@ function resetGame() {
 // Game loop
 function updateGame() {
     if (!gameRunning) return; // Stop the game if it's over
-    lastdirection.shift()
+    if (lastdirection.length > 0) lastdirection.shift()
+
     document.getElementById("lifecontainer").textContent = `Lives: ${life}`;
     
     // Move snake by adding new head
