@@ -32,6 +32,11 @@ document.getElementById("down").addEventListener("touchstart", function() {
 });
 const box = 20; // Snake and food size
 const bigbox = 40; // Wall size
+let lastdirection = []  /////queue for keyinputs
+let up = "up"
+let down = "down"
+let right = "right"
+let left = "left"
 let poocontainer = []; // Array to hold poo positions
 let poo = { x: -box, y: -box }; //start poo off screen
 let snake = [{ x: 200, y: 200 }];
@@ -165,11 +170,7 @@ function getWallposition() {
 }
 // Listen for arrow key / WASD presses
 
-let lastdirection = []  /////queue for keyinputs
-let up
-let down
-let right
-let left
+
 
 function goup()
 {dx = 0; dy = -box; lastdirection.push(up);} 
