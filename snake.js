@@ -168,23 +168,27 @@ function getWallposition() {
 lastdirection = []
 
 function goup()
-{dx = 0; dy = -box; lastdirection.push(up)} 
+{dx = 0; dy = -box; lastdirection.push(up); lastdirection.shift()} 
 
 function goright()
-{dx = box; dy = 0; lastdirection.push(right)}
+{dx = box; dy = 0; lastdirection.push(right); last.direction.shift()}
 
 function goleft()
-{dx = -box; dy = 0; lastdirection.push(left)}
+{dx = -box; dy = 0; lastdirection.push(left); last.direction.shift()}
 
 function godown()
-{dx = 0; dy = box; lastdirection.push(down)}
+{dx = 0; dy = box; lastdirection.push(down); last.direction.shift()}
 
 document.addEventListener("keydown", changeDirection);
 
 function changeDirection(event) {
-    if (event.key === "ArrowUp" && dy === 0 || event.key === "w" && dy === 0) {goup()}
+    if (event.key === "ArrowUp" && dy === 0 && lastdirection.length>=1|| event.key === "w" && dy === 0 && lastdirection.length>=1) {setTimeout(goup(), 100)}
+    else if(event.key === "ArrowUp" && dy === 0 || event.key === "w" && dy === 0) {goup()}
+   
     else if (event.key === "ArrowDown" && dy ===0 || event.key === "s" && dy === 0) {godown()}
+    
     else if (event.key === "ArrowLeft" && dx === 0 || event.key === "a" && dx === 0) {goleft()}
+    
     else if (event.key === "ArrowRight" && dx === 0 || event.key === "d" && dx === 0) {goright()}
     
 
