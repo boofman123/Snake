@@ -171,13 +171,13 @@ function goup()
 {dx = 0; dy = -box; lastdirection.push(up); lastdirection.shift()} 
 
 function goright()
-{dx = box; dy = 0; lastdirection.push(right); last.direction.shift()}
+{dx = box; dy = 0; lastdirection.push(right); lastdirection.shift()}
 
 function goleft()
-{dx = -box; dy = 0; lastdirection.push(left); last.direction.shift()}
+{dx = -box; dy = 0; lastdirection.push(left); lastdirection.shift()}
 
 function godown()
-{dx = 0; dy = box; lastdirection.push(down); last.direction.shift()}
+{dx = 0; dy = box; lastdirection.push(down); lastdirection.shift()}
 
 document.addEventListener("keydown", changeDirection);
 
