@@ -1,8 +1,7 @@
 //////GLOBAL VARIABLES////////
-////IMAGE SOUND AND GRAPHICS SETUP//////
 
-const canvas = document.getElementById("gameCanvas"); 
-const ctx = canvas.getContext("2d");  ////ensure canvas follows 2d context
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
 const snakeHeadImg = new Image();
 snakeHeadImg.src = "images/snakehead.png";
 const snakeBodyImg = new Image();
@@ -14,8 +13,7 @@ foodImg.src = "images/burger.png";
 let poonoise = new Audio("sounds/fart.mp3");
 const music = new Audio("sounds/musicback.mp3");
 const silence = new Audio("sounds/silence.mp3")
-
-////////arrow keys for mobile\\\\\\\\\\
+//arrow keys for mobile
 document.getElementById("left").addEventListener("touchstart", function() {
     event = new KeyboardEvent('keydown', {'key': 'ArrowLeft'});
     document.dispatchEvent(event);  
@@ -32,9 +30,6 @@ document.getElementById("down").addEventListener("touchstart", function() {
     event = new KeyboardEvent('keydown', {'key': 'ArrowDown'});
     document.dispatchEvent(event);
 });
-
-//////GAME VARIABLES////////
-
 const box = 20; // Snake and food size
 const bigbox = 40; // Wall size
 let lastdirection = ["first"];  /////queue for keyinputs
@@ -54,8 +49,6 @@ let lastWallScore = 0; // Track the score when the last wall was added
 let gameRunning = false; // Track if the game is running
 let volume = true;
 let fx = true;
-
-///////SOUND CONTROLS////////
 document.getElementById("mute").addEventListener("click", function() {
     if (volume === true ) {
         music.pause()
@@ -76,6 +69,10 @@ document.getElementById("fx").addEventListener("click", function(){
         poonoise = new Audio("sounds/fart.mp3")
     }
 })
+
+
+
+
 
 ///////OPEN SCREEN AND MENU////////
 
@@ -171,10 +168,7 @@ function getRandomPosition() {
 function getWallposition() {
     return Math.floor(Math.random() * (canvas.width / bigbox)) * bigbox;
 }
-
 // Listen for arrow key / WASD presses
-// Change direction based on key press
-// Update lastdirection queue, this will avoid keypress overlap issues///
 
 function goup()
 {lastdirection.push(up); dx = 0; dy = -box;} 
@@ -188,24 +182,22 @@ function goleft()
 function godown()
 {lastdirection.push(down); dx = 0; dy = box; }
 
-document.addEventListener("keydown", changeDirection());
+document.addEventListener("keydown", changeDirection);
 
 function changeDirection(event) {
     if (lastdirection.length >= 1 && event.key === "ArrowUp" && dy === 0 || lastdirection.length >= 1 && event.key === "w" && dy === 0 ) {setTimeout(goup(), 500)}
    else if (lastdirection.length >= 1 && event.key === "ArrowDown" && dy ===0 || lastdirection.length >= 1 && event.key === "s" && dy === 0 ) {setTimeout(godown(), 500)}
    else if (lastdirection.length >= 1 && event.key === "ArrowLeft" && dx === 0 || lastdirection.length >= 1 && event.key === "a" && dx === 0 ) {setTimeout(goleft(), 500)}
    else if (lastdirection.length >= 1 && event.key === "ArrowRight" && dx === 0 || lastdirection.length >= 1 && event.key === "d" && dx === 0) {setTimeout(goright(), 500)}
-  /////check for queue status, add timer if queue has inputs/////
+  
 
     else if (lastdirection.length === 0 && event.key === "ArrowDown" && dy ===0 || lastdirection.length === 0 && event.key === "s" && dy === 0) {godown()}
     else if (lastdirection.length === 0 && event.key === "ArrowLeft" && dx === 0|| lastdirection.length === 0 && event.key === "a" && dx === 0) {goleft()}
     else if (lastdirection.length === 0 && event.key === "ArrowRight" && dx === 0|| lastdirection.length === 0 && event.key === "d" && dx === 0) {goright()}
     else if(lastdirection.length === 0 && event.key === "ArrowUp" && dy === 0 || lastdirection.length === 0 && event.key === "w" && dy === 0) {goup()}
-////check for queue status, no timer if queue is empty/////
+
 }
-
-/////////Reset the game state\\\\\\\\\\\\\\\\\
-
+// Reset the game state
 function resetGame() {
     snake = [{ x: 200, y: 200 }];
     food = { x: getRandomPosition(), y: getRandomPosition() };
@@ -225,33 +217,32 @@ function resetGame() {
     score = 0;
     gameRunning = true;
     lastWallScore = 0; // Reset last wall score
-    lastdirection = ["first"] //Add first to avoid errors
+    lastdirection = ["first"]
 }
-///////////////// GAME LOOP ////////////////////////
-
+// Game loop
 function updateGame() {
     if (!gameRunning) return; // Stop the game if it's over
     
-    ///empties the lastdirection queue every new frame, allowing for new inputs
     if (lastdirection.length > 0) {
         console.log (lastdirection), lastdirection.shift(), console.log(lastdirection)
     }
-    document.getElementById("lifecontainer").textContent = `Lives: ${life}`; // Update life display
-   
-    let newHead = { x: snake[0].x + dx, y: snake[0].y + dy }; //Move snake head
+
+    document.getElementById("lifecontainer").textContent = `Lives: ${life}`;
     
-    // Generate walls based on score and update lastWallScore
+    // Move snake by adding new head
+    let newHead = { x: snake[0].x + dx, y: snake[0].y + dy };
+    //Delete and add walls
     if (score >= 20 && score % 5 === 0 && score !== lastWallScore) {
         wall = generateLongWall(4);
-        lastWallScore = score; 
+        lastWallScore = score; // Update the last wall score
     }
     else if (score >= 30 && score % 5 === 0 && score !== lastWallScore) {
 
-        wall = generateLongWall(6); 
+        wall = generateLongWall(6); // Longer walls at higher scores
 
-        lastWallScore = score; 
+        lastWallScore = score;
     }
-    // Check for collision with canvas boundaries
+    // Check for wall collision
     if (newHead.x < 0 || newHead.x >= canvas.width || newHead.y < 0 || newHead.y >= canvas.height) {
         gameOver();
         return;
@@ -280,6 +271,7 @@ function updateGame() {
     // Check for collision with poo
     if (score >= 10) {
 
+
         for (let segment of poocontainer) {
 
             if (newHead.x === segment.x && newHead.y === segment.y) {
@@ -300,6 +292,8 @@ function updateGame() {
    //check if food is eaten and score is 5 or more to spawn poo
     
     if (score >= 5 && newHead.x === food.x && newHead.y === food.y) {
+
+
         score++;
         document.getElementById("scorebox").textContent = `Score: ${score}`;
         food = { x: getRandomPosition(), y: getRandomPosition() };
@@ -316,7 +310,8 @@ function updateGame() {
         }
         increaseSpeedIfNeeded && increaseSpeedIfNeeded();
 
-    }  
+    }
+      
     else if (newHead.x === food.x && newHead.y === food.y) {
         score++;
         document.getElementById("scorebox").textContent = `Score: ${score}`;
@@ -330,28 +325,40 @@ function updateGame() {
     } else {
         snake.pop(); // Remove tail if no food is eaten
     }
+
 // Display messages at certain scores
+
     if (score === 5){
+
         document.getElementById("bullshit").textContent = "Getting faster!";
     }
+
         else if (score === 20){
+
             document.getElementById("bullshit").textContent = "Incoming walls!";
     }
+
         else if (score === 10){
+
             document.getElementById("bullshit").textContent = "Avoid your own poop!";
     }
+
     else if (score === 30){
+
             document.getElementById("bullshit").textContent = "Longer walls!";
     }
+
         else if (score === 50){ 
             document.getElementById("bullshit").textContent = "Jesus Christ!";
             document.getElementById("gameCanvas").style.backgroundColor = "gold";
     }
+
         else if (score === 70){
             document.getElementById("bullshit").textContent = "You could really make it!";
             document.getElementById("gameCanvas").style.backgroundColor = "black";
         }
-           else if (score === 100) {
+
+            else if (score === 100) {
                 document.getElementById("bullshit").textContent = "Holy smokes, you are the snake master!";
                 gameOver();
             }
@@ -360,7 +367,6 @@ function updateGame() {
     drawGame();
 
 }
-
 // Handle game over
 function gameOver() {
 
@@ -372,7 +378,7 @@ function gameOver() {
 
 }
 
-////// DRAW GAME ELEMENTS/////////
+// Draw snake and food
 function drawGame() {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
