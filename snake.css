@@ -15,6 +15,7 @@ canvas {
     font-weight: bolder;
     font-style: italic;
     color: black;
+    box-shadow: 10px 10px 5px gray;
     border: 3px solid black;
     border-radius: 20%;
     
@@ -37,7 +38,7 @@ canvas {
 #lifecontainer, #bullshit{
     font-size: 16px;
     font-weight: bold;
-    color:#000000;
+    color: red;
     font-family: Arial, Helvetica, sans-serif;
     flex:auto;
     border: 1px solid black;

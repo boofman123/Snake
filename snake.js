@@ -1,7 +1,8 @@
 //////GLOBAL VARIABLES////////
+////IMAGE SOUND AND GRAPHICS SETUP//////
 
-const canvas = document.getElementById("gameCanvas");
-const ctx = canvas.getContext("2d");
+const canvas = document.getElementById("gameCanvas"); 
+const ctx = canvas.getContext("2d");  ////ensure canvas follows 2d context
 const snakeHeadImg = new Image();
 snakeHeadImg.src = "images/snakehead.png";
 const snakeBodyImg = new Image();
@@ -14,7 +15,7 @@ let poonoise = new Audio("sounds/fart.mp3");
 const music = new Audio("sounds/musicback.mp3");
 const silence = new Audio("sounds/silence.mp3")
 
-//arrow keys for mobile
+////////arrow keys for mobile\\\\\\\\\\
 document.getElementById("left").addEventListener("touchstart", function() {
     event = new KeyboardEvent('keydown', {'key': 'ArrowLeft'});
     document.dispatchEvent(event);  
@@ -187,20 +188,20 @@ function goleft()
 function godown()
 {lastdirection.push(down); dx = 0; dy = box; }
 
-document.addEventListener("keydown", changeDirection);
+document.addEventListener("keydown", changeDirection());
 
 function changeDirection(event) {
     if (lastdirection.length >= 1 && event.key === "ArrowUp" && dy === 0 || lastdirection.length >= 1 && event.key === "w" && dy === 0 ) {setTimeout(goup(), 500)}
    else if (lastdirection.length >= 1 && event.key === "ArrowDown" && dy ===0 || lastdirection.length >= 1 && event.key === "s" && dy === 0 ) {setTimeout(godown(), 500)}
    else if (lastdirection.length >= 1 && event.key === "ArrowLeft" && dx === 0 || lastdirection.length >= 1 && event.key === "a" && dx === 0 ) {setTimeout(goleft(), 500)}
    else if (lastdirection.length >= 1 && event.key === "ArrowRight" && dx === 0 || lastdirection.length >= 1 && event.key === "d" && dx === 0) {setTimeout(goright(), 500)}
-  
+  /////check for queue status, add timer if queue has inputs/////
 
     else if (lastdirection.length === 0 && event.key === "ArrowDown" && dy ===0 || lastdirection.length === 0 && event.key === "s" && dy === 0) {godown()}
     else if (lastdirection.length === 0 && event.key === "ArrowLeft" && dx === 0|| lastdirection.length === 0 && event.key === "a" && dx === 0) {goleft()}
     else if (lastdirection.length === 0 && event.key === "ArrowRight" && dx === 0|| lastdirection.length === 0 && event.key === "d" && dx === 0) {goright()}
     else if(lastdirection.length === 0 && event.key === "ArrowUp" && dy === 0 || lastdirection.length === 0 && event.key === "w" && dy === 0) {goup()}
-
+////check for queue status, no timer if queue is empty/////
 }
 
 /////////Reset the game state\\\\\\\\\\\\\\\\\
@@ -224,13 +225,14 @@ function resetGame() {
     score = 0;
     gameRunning = true;
     lastWallScore = 0; // Reset last wall score
-    lastdirection = ["first"]
+    lastdirection = ["first"] //Add first to avoid errors
 }
 ///////////////// GAME LOOP ////////////////////////
 
 function updateGame() {
     if (!gameRunning) return; // Stop the game if it's over
     
+    ///empties the lastdirection queue every new frame, allowing for new inputs
     if (lastdirection.length > 0) {
         console.log (lastdirection), lastdirection.shift(), console.log(lastdirection)
     }
